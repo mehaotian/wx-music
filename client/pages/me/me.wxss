@@ -1,0 +1,126 @@
+/* pages/me/me.wxss */
+
+page {
+    background: #333;
+}
+.wrap {
+    opacity: 0;
+    transition: opacity 1s;
+}
+.head-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 20rpx;
+    box-sizing: border-box;
+    overflow: hidden;
+    height: 220rpx;
+    /* background: rgba(0, 0, 0, 0.2); */
+}
+.list-item-image-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+     /* filter: blur(5rpx); */
+}
+.head {
+    flex-shrink: 0;
+    width: 120rpx;
+    height: 120rpx;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.head image {
+    width: 100%;
+    height: 100%;
+}
+
+.content {
+    display: flex;
+    /* align-items: center; */
+    flex-direction: column;
+    justify-content:space-between;
+    padding-left: 30rpx;
+    width: 100%;
+    font-size: 32rpx;
+    color: #ccc;
+    height: 110rpx;
+    /* overflow: hidden; */
+}
+
+.lv {
+    margin-top: 10rpx;
+    width: 80rpx;
+    line-height: 30rpx;
+    flex-basis: width;
+    border: 1px #ff5a5f solid;
+    border-radius: 20rpx;
+    font-size: 26rpx;
+    color: #ff5a5f;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.title {
+    position: relative;
+    width: 100%;
+    line-height: 60rpx;
+    padding-left: 20rpx;
+    /* border-left: 10rpx #ff5a5f solid; */
+    font-size: 28rpx;
+    color: #fff;
+    border-top: 1rpx #222 solid;
+    border-bottom: 1rpx #222 solid;
+}
+
+.title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 10rpx;
+    height: 100%;
+    background: #ff5a5f;
+}
+
+.song-list {
+    position: relative;
+    display: flex;
+    margin: 20rpx;
+    padding: 20rpx;
+    box-sizing: border-box;
+    border-radius: 10rpx;
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.4),
+                0px 1px 1px 0px rgba(255, 255, 255, 0.1) inset;
+    color: #ccc;
+    text-shadow: -1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* .song-list::after {
+    left: 20rpx;
+} */
+
+.song-head {
+    flex-shrink: 0;
+    width: 100rpx;
+    height: 100rpx;
+}
+
+.song-head image {
+    width: 100%;
+    height: 100%;
+}
+
+.song-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 30rpx;
+    color: #ccc;
+    padding: 5rpx 20rpx;
+    overflow: hidden;
+}

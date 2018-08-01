@@ -1,0 +1,11 @@
+<!-- 
+author：meHaoTian
+
+ github : https://github.com/mehaotian
+ 
+ describe : 标题栏
+ -->
+<view class="list-box-title">
+    <text>{{name}}</text>
+    <text>更多</text>
+</view> 

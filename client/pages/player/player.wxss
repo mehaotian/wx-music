@@ -1,0 +1,175 @@
+/* pages/player/player.wxss */
+
+.wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 30rpx 10rpx;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    box-sizing: border-box;
+
+}
+
+.bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.image-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* opacity: 0.8; */
+    filter: blur(100rpx);
+    transform: scale(2);
+    box-sizing: border-box;
+    z-index: -1;
+}
+
+.cover-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    /* padding: 50rpx 20rpx; */
+    box-sizing: border-box;
+}
+
+.cover-item {
+    flex-shrink: 0;
+    position: relative;
+    width: 500rpx;
+    height: 500rpx;
+    overflow: hidden;
+    border-radius: 50%;
+    box-sizing: border-box;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+.center-style {
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 70rpx;
+    height: 70rpx;
+    background: #fff;
+    border-radius: 50%;
+    z-index: 20;
+    box-shadow: 0 0 0 20px rgba(245, 245, 245, 0.8), 0 0 0 24px rgba(0, 0, 0, 0.3);
+}
+
+.cover-item image {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+}
+
+.control-box {
+    position: relative;
+    z-index: 2;
+    flex-shrink: 0;
+    width: 100%;
+    /* height: 100%; */
+    box-sizing: border-box;
+}
+
+.control-head {
+    display: flex;
+    align-items: center;
+    height: 100rpx;
+    padding: 0 40rpx;
+    margin: 30rpx 0;
+}
+
+.head-icon {
+    display: flex;
+    align-items: center;
+    width: 100rpx;
+    height: 100rpx;
+    color: #fff;
+}
+
+.control-menu {
+    justify-content: flex-end;
+}
+
+.head-icon .music {
+    font-size: 40rpx;
+}
+
+.head-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex-direction: column;
+    font-size: 32rpx;
+    color: #fff;
+}
+
+.progress {
+    padding: 20rpx 40rpx;
+}
+
+.progress-time {
+    display: flex;
+    justify-content: space-between;
+    font-size: 24rpx;
+    color: #fff;
+    line-height: 2;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 30rpx;
+    margin: 30rpx 0;
+    margin-bottom: 60rpx;
+}
+
+.button-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60rpx;
+    height: 60rpx;
+    color: #fff;
+}
+
+.button-icon .music {
+    text-shadow: -1px 0px 1px rgba(0, 0, 0, 0.4);
+}
+
+.button-icon.play {
+    width: 120rpx;
+    height: 120rpx;
+    border-radius: 50%;
+    background: #ff5a5f;
+    box-shadow: 0 0 10px 2px rgba(255, 90, 95, 0.4);
+    border: 1px rgba(255, 255, 255, 0.8) solid;
+}
+
+.button-icon.play .icon-play {
+    color: #fff;
+    padding-left: 8rpx;
+    text-shadow: 0 0 0;
+}

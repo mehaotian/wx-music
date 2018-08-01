@@ -1,0 +1,101 @@
+<!-- 首页  -->
+<!-- 轮播图 -->
+<swiper class='swiper' indicator-dots indicator-active-color="#ff5a5f" autoplay="true" circular="true" previous-margin="0rpx" next-margin="0rpx">
+    <swiper-item class="swiper-item" wx:for="{{list[0]}}" wx:key="swiper">
+        <view class='swiper-content'>
+            <image class='image-bg' src="{{item.pic}}" mode='aspectFill'></image>
+            <view class="right-tag {{item.titleColor}}">{{item.typeTitle}}</view>
+        </view>
+    </swiper-item>
+</swiper>
+
+<!--  按钮 -->
+<view class="modular-wrap">
+    <view class="modular-item" data-type='0' data-url="/pages/privateFM/privateFM" bindtap='jumpPage'>私人FM</view>
+    <view class="modular-item" data-type='1' data-url="/pages/ranking/ranking" bindtap='jumpPage'>排行</view>
+    <view class="modular-item" data-type='2' data-url="/pages/me/me" bindtap='jumpPage'>我的</view>
+</view>
+
+<!-- 歌曲个性推荐  -->
+<view class="list-box-wrap">
+    <!-- 标题栏 -->
+    <!-- 标题栏可以单独做组件封装 -->
+    <!-- <view class="list-box-title">
+        <text>个性化推荐</text>
+        <text>更多</text>
+    </view> -->
+    <title name="个性化推荐"></title>
+    <!-- 推荐内容，是一个竖列表 -->
+    <view class="list-content">
+        <view wx:if="{{index < 5}}" class="list-item" wx:for="{{list[1]}}" wx:key="list" data-item="{{item}}" bindtap="playMusic">
+            <image class='list-item-image-bg' src="{{item.song.album.picUrl}}"></image>
+            <view class='list-content-head'>
+                <image src="{{item.song.album.picUrl}}" mode='aspectFill'></image>
+            </view>
+            <view class="list-content-info">
+                <view class="title font-32 color-ccc text-ellipsis"> {{item.song.name}}</view>
+                <view class="content text-ellipsis font-26">
+                    <block wx:for="{{item.song.artists}}" wx:key="artists" wx:for-item="artists" wx:for-index="artistsIndex">
+                        <!-- 可能会有多个歌手， 所以需要 循环 歌手名字 用  / 分割   -->
+                        <block wx:if="{{artistsIndex !== 0}}">/</block>{{artists.name}}
+                    </block>
+                    <!-- 测试歌手-测试专辑 -->
+                    - {{item.song.album.name }}
+                </view>
+            </view>
+            <view class='list-content-play'>
+                <text class='music icon-play font-32'></text>
+            </view>
+        </view>
+    </view>
+
+    <!-- 推荐歌单  -->
+    <title name="推荐歌单"></title>
+
+    <view class="list-content grid">
+        <view class="list-item " wx:for="{{list[2]}}" wx:key="grid" data-id="{{item.id}}" bindtap='songFn'>
+            <image class='list-item-image-bg' src="{{item.coverImgUrl}}"></image>
+            <view class="list-item-head">
+                <view class="list-item-head-num">{{item.trackCount}}首</view>
+                <view class="list-item-head-play">{{item.playCount}}次播放</view>
+                <view class='list-item-head-box'>
+                    <image src="{{item.coverImgUrl}}" mode='aspectFill'></image>
+                </view>
+            </view>
+            <view class='list-item-info text-ellipsis-2 '>
+                {{item.name}}
+            </view>
+            <view class='list-item-info-2 text-ellipsis font-24'>
+                来自 {{item.creator.nickname}}
+            </view>
+
+        </view>
+    </view>
+
+    <!-- 推荐mv  -->
+    <title name="推荐mv"></title>
+
+    <view class="list-content grid">
+        <view wx:if="{{index <3}}" class="list-item " wx:for="{{list[3]}}" wx:key="mv">
+            <image class='list-item-image-bg' src="{{item.picUrl}}"></image>
+            <view class="list-item-head">
+                <view class='list-item-head-icon'>
+                    <text class='music icon-play font-50 color-fff'></text>
+                </view>
+                <view class="list-item-head-play">{{item.playCount}}次播放</view>
+                <view class='list-item-head-box'>
+                    <image src="{{item.picUrl}}" mode='aspectFill'></image>
+                </view>
+            </view>
+            <view class='list-item-info text-ellipsis-2'>
+                {{item.name}}
+            </view>
+            <view class='list-item-info-2 text-ellipsis font-24'>
+                来自 {{item.artistName}}
+            </view>
+        </view>
+    </view>
+</view>
+
+
+<player itemData="{{itemData}}"></player>

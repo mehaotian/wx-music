@@ -1,0 +1,132 @@
+/** 公共样式**/
+@import 'common/font/iconfont.wxss';
+
+/* 颜色相关  */
+
+/*字体颜色  */
+
+.color-333 {
+    color: #333;
+}
+
+.color-666 {
+    color: #666;
+}
+
+.color-999 {
+    color: #999;
+}
+
+.color-ddd {
+    color: #ddd;
+}
+
+.color-ccc {
+    color: #ccc;
+}
+
+.color-f5 {
+    color: #f5f5f5;
+}
+.color-fff {
+    color: #fff;
+}
+/*背景颜色  */
+
+.bg-333 {
+    background: #333;
+}
+
+.bg-666 {
+    background: #666;
+}
+
+.bg-999 {
+    background: #999;
+}
+
+.bg-ddd {
+    background: #ddd;
+}
+
+.bg-ccc {
+    background: #ccc;
+}
+
+.bg-f5 {
+    background: #f5f5f5;
+}
+
+/*字体大小  */
+.font-24 {
+    font-size: 24rpx;
+}
+.font-26 {
+    font-size: 26rpx;
+}
+
+.font-28 {
+    font-size: 28rpx;
+}
+
+.font-30 {
+    font-size: 30rpx;
+}
+
+.font-32 {
+    font-size: 32rpx;
+}
+
+.font-34 {
+    font-size: 34rpx;
+}
+
+.font-36 {
+    font-size: 36rpx;
+}
+.font-40 {
+    font-size: 40rpx;
+}
+.font-50 {
+    font-size: 50rpx;
+}
+/* 文字溢出隐藏  */
+
+.text-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.text-ellipsis-2 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+/* 1px 边线  */
+
+.border-top::after {
+    position: absolute;
+    right: 0.2rem;
+    left: 0.2rem;
+    height: 1px;
+    content: '';
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+    background-color: #e8e8e8;
+    top: -1px;
+}
+
+.border-bottom::after {
+    position: absolute;
+    right: 0;
+    left: 0;
+    height: 1px;
+    content: '';
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+    background-color: #e8e8e8;
+    bottom: -1px;
+}

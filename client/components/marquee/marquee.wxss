@@ -1,0 +1,34 @@
+/* components/marquee/marquee.wxss */
+
+.wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.box {
+    /* position: absolute; */
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.move {
+    animation: start1 20s infinite linear;
+}
+
+@keyframes start1 {
+    0% {
+        transform: translateX(0);
+    }
+
+    80% {
+        transform: translateX(var(--mWidth--));
+    }
+
+    100% {
+        transform: translateX(var(--mWidth--));
+    }
+}
+
+

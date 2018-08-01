@@ -1,0 +1,16 @@
+<view class="wrap">
+    <view class='logo'>
+        <image class='image-bg' src="../../image/logo.png" mode='aspectFill'></image>
+    </view>
+    <view class="wrap-item">
+        <input placeholder='请输入手机号' type='number' data-name="phone" bindinput="input"></input>
+    </view>
+    <view class="wrap-item">
+        <input placeholder='请输入密码' type='password' data-name="password" bindinput="input"></input>
+    </view>
+
+    <view class="wrap-item button">
+        <button bindtap='login'>登陆</button>
+    </view>
+    <view class='explain'>说明:本小程序仅用于学习交流使用，请勿用于其他场景下使用。</view>
+</view>

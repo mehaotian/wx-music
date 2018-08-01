@@ -1,0 +1,185 @@
+/* component/player/player.wxss */
+@import '../../common/font/iconfont.wxss';
+
+.player-wrap {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 110rpx;
+    /* border: 1px red solid; */
+    background: #fff;
+    box-sizing: border-box;
+    z-index: 999;
+    border-top: 2px #000 solid;
+    transition: all 1.5s;
+    transform: translateY(130%);   
+}
+
+/* 移动动画 */
+.player-wrap.move {
+    transform: translateY(0);
+}
+
+/* 小光盘样式 */
+
+.cover-box-bg {
+    position: absolute;
+    top: -36rpx;
+    left: 20rpx;
+    width: 126rpx;
+    height: 126rpx;
+    border-radius: 50%;
+    border: 2px #000 solid;
+    z-index: -1;
+    /* box-shadow: 0px -1px 2px 0 rgba(255, 255, 255, 0.6); *//* box-sizing: border-box; */
+}
+
+.cover-box {
+    position: absolute;
+    top: -32rpx;
+    left: 24rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    width: 126rpx;
+    height: 126rpx;
+    overflow: hidden;
+    border-radius: 50%;
+    background: #fff;
+}
+
+.cover-item {
+    flex-shrink: 0;
+    position: relative;
+    width: 100rpx;
+    height: 100rpx;
+    overflow: hidden;
+    border-radius: 50%;
+    /* box-sizing: border-box; */
+    box-shadow: 0 0px 0 2px rgba(0, 0, 0, 0.4);
+    z-index: 10;
+    box-sizing: border-box;
+}
+
+.cover-item.move {
+    animation: start 10s infinite linear;
+}
+
+/*  光盘转动动画 */
+
+@keyframes start {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.center-style {
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 20rpx;
+    height: 20rpx;
+    background: #fff;
+    border-radius: 50%;
+    z-index: 20;
+    box-shadow: 0 0 0 6px rgba(245, 245, 245, 0.8), 0 0 0 24px rgba(0, 0, 0, 0.3);
+}
+
+.cover-item image {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+}
+
+/*  播放器内容 */
+
+.player-content {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    /* border: 1px red solid; */
+    box-sizing: border-box;
+    padding-left: 150rpx;
+}
+
+.player-content .box {
+    width: 100%;
+    height: 100%;
+    /* border: 1px red solid; */
+}
+
+.player-content .player-content-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    width: 180rpx;
+    height: 100%;
+    color: #000;
+}
+
+.box-item {
+    overflow: hidden;
+}
+
+.box .music {
+    font-size: 50rpx;
+}
+
+.box .music.play {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 60rpx;
+    height: 60rpx;
+    border: 1px #666 solid;
+    box-sizing: border-box;
+    color: #666;
+    font-size: 32rpx;
+}
+
+.box .music.icon-play {
+    padding-left: 8rpx;
+    padding-top: 4rpx;
+}
+
+.box .music.icon-zanting {
+    font-size: 38rpx;
+}
+
+.box .right-box {
+    width: 90rpx;
+    text-align: center;
+}
+
+.player-content-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 20rpx;
+    font-size: 30rpx;
+    overflow: hidden;
+}
+
+.player-content-left .album {
+    margin-top: 6rpx;
+    font-size: 26rpx;
+    color: #ccc;
+}
+
+/* 元素占位 */
+
+.page-seize {
+    height: 110rpx;
+}

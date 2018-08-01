@@ -1,0 +1,39 @@
+<view class="wrap" style='opacity: {{pageShow?"1":"0"}};'> 
+
+    <view class="head-box">
+        <image class='list-item-image-bg' src="{{userinfo.profile.backgroundUrl}}"></image>
+        <view class="head">
+            <image src="{{userinfo.profile.avatarUrl}}" mode='aspectFill'></image>
+        </view>
+        <view class="content">
+            <view class='text-ellipsis'>{{userinfo.profile.nickname}}</view>
+            <view class="lv">Lv.{{userinfo.level}}</view>
+        </view>
+
+    </view>
+
+    <view class="box">
+        <view class='title'>我创建的歌单({{list.myList.length}})</view>
+        <view class="song-list" wx:for="{{list.myList}}" wx:key="index" data-id="{{item.id}}" bindtap='songFn'>
+            <view class="song-head">
+                <image src="{{item.coverImgUrl}}" mode='aspectFill'></image>
+            </view>
+            <view class="song-content">
+                <view>{{item.name}}</view>
+                <view class="font-24 color-666">{{item.trackCount}}首歌曲</view>
+            </view>
+        </view>
+        <view class='title'>收藏的歌单({{list.collection.length}})</view>
+        <view class="song-list" wx:for="{{list.collection}}" wx:key="index" data-id="{{item.id}}" bindtap='songFn'>
+            <view class="song-head">
+                <image src="{{item.coverImgUrl}}" mode='aspectFill'></image>
+            </view>
+            <view class="song-content">
+                <view class='text-ellipsis'>{{item.name}}</view>
+                <view class="font-24 color-666">{{item.trackCount}}首歌曲</view>
+            </view>
+        </view>
+
+    </view>
+
+</view>

@@ -1,0 +1,54 @@
+<view class='wrapper'>
+    <view class='bg'></view>
+    <image class='image-bg' src="/image/test1.jpeg" mode='aspectFill'></image>
+    <view class="cover-box">
+        <view class='cover-item'>
+            <view class='center-style'></view>
+            <image src="/image/test1.jpeg" mode='aspectFill'></image>
+        </view>
+    </view>
+    <view class="control-box">
+        <view class='control-head'>
+            <view class="head-icon control-like">
+                <text class='music icon-icon_collect'></text>
+            </view>
+            <view class='head-title'>
+                <text>告白气球</text>
+                <text class='font-24 color-ccc'>周杰伦</text>
+            </view>
+            <view class="head-icon control-menu">
+                <text class='music icon-101'></text>
+            </view>
+        </view>
+        <view class='progress'>
+            <view class="progress-box">
+                <progress percent="80" activeColor="#ff5a5f" />
+            </view>
+            <view class='progress-time'>
+                <text class=''>02:00</text>
+                <text class=''>04:32</text>
+            </view>
+
+        </view>
+        <view class='button-group'>
+            <view class='button-icon'>
+                <text class='music icon-icon-2 font-50'></text>
+            </view>
+            <view class='button-icon'>
+                <text class='.music icon-shangyishoushangyige font-34'></text>
+            </view>
+            <view class='button-icon play'>
+                <text class='music icon-play font-50'></text>
+            </view>
+            <view class='button-icon'>
+                <text class='.music icon-xiayigexiayishou font-34'></text>
+            </view>
+            <view class='button-icon'>
+                <text class='.music icon-caidan font-50'></text>
+            </view>
+
+        </view>
+    </view>
+
+
+</view>

@@ -1,0 +1,74 @@
+{
+	"client": "./client",
+	"svr": "./server",
+	"miniprogramRoot": "./client",
+	"qcloudRoot": "./server",
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"appid": "wx9dcdaed5b2bc94ad",
+	"projectname": "%E5%BE%AE%E4%BF%A1%E9%9F%B3%E4%B9%90",
+	"compileType": "miniprogram",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": 2,
+			"list": [
+				{
+					"id": -1,
+					"name": "私人FM",
+					"pathName": "pages/privateFM/privateFM",
+					"query": ""
+				},
+				{
+					"id": 1,
+					"name": "排行榜",
+					"pathName": "pages/ranking/ranking",
+					"query": ""
+				},
+				{
+					"id": 2,
+					"name": "排行榜详情",
+					"pathName": "pages/rankDetail/rankDetail",
+					"query": "idx=2208755736&types=song"
+				},
+				{
+					"id": -1,
+					"name": "播放器",
+					"pathName": "pages/player/player",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/me/me",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "登陆",
+					"pathName": "pages/login/login",
+					"query": ""
+				}
+			]
+		}
+	}
+}

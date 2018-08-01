@@ -1,0 +1,43 @@
+<!-- 私人FM  -->
+<view class="wrapper">
+    <image class='image-bg' src="/image/test1.jpeg" mode='aspectFill'></image>
+    <view class='music-box'>
+        <view class='play-button'>
+            <text class="music icon-play"></text>
+        </view>
+        <view class='music-head'>
+            <image src="/image/test1.jpeg" mode='aspectFill'></image>
+        </view>
+        <view class="music-content">
+            <view class="music-item-box">
+                <view class='music-title'>
+                    <text class='font-30 color-333'>告白气球</text>
+                    <text>周杰伦</text>
+                </view>
+                <view class='paly-group'>
+                    <view class='buttons'>
+                        <view class="paly-group-button">
+                            <text class='music icon-icon_collect'></text>
+                        </view>
+                        <view class="paly-group-button play">
+                            <text class="music icon-shanchu"></text>
+                        </view>
+                        <view class="paly-group-button">
+                            <text class="music icon-xiayigexiayishou"></text>
+                        </view>
+                        <view class='time'>03:00/04:32</view>
+                    </view>
+                    <view class='buttons'>
+                        <view class="paly-group-button right"></view>
+                        <view class="paly-group-button right">
+                            <text class="music icon-shengyin"></text>
+                        </view>
+                    </view>
+                </view>
+                <view class='progress'>
+                    <progress percent="80" activeColor="#ff5a5f" />
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

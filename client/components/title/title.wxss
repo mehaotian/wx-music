@@ -1,0 +1,9 @@
+/* components/title/title.wxss */
+
+ .list-box-title {
+    display: flex;
+    justify-content: space-between;
+    padding: 20rpx;
+    border-bottom: 1px #222 solid;
+    color: #fff;
+}

@@ -1,0 +1,20 @@
+<view class="ranking-wrap">
+    <view class='rank-item-title'>官方榜</view>
+    <view class="rank-item" >
+        <view class='rank-box' wx:for="{{list}}" wx:key="index" data-idx="{{item.id}}" bindtap='detailFn'>
+            <view class='head'>
+                <image src='{{item.url}}' mode='aspectFit'></image>
+            </view>
+            <view class='rank-title text-ellipsis-2'> {{item.name}}</view>
+        </view>
+    </view>
+    <view class='rank-item-title'>全球榜</view>
+    <view class="rank-item">
+        <view class='rank-box' wx:for="{{list2}}" wx:key="index" data-idx="{{item.id}}" bindtap='detailFn'>
+            <view class='head'>
+                <image src='{{item.url}}' mode='aspectFit'></image>
+            </view>
+            <view class='rank-title text-ellipsis-2'> {{item.name}}</view>
+        </view>
+    </view>
+</view> 

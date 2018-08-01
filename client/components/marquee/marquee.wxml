@@ -1,0 +1,17 @@
+<!-- 
+ author：meHaoTian
+
+ github : https://github.com/mehaotian
+ 
+ describe :' 原生html是有一个marquee标签可以实现跑马灯效果。
+而小程序是没有这个标签的，所以现在简单的封装了一个可以实现向左滚的跑马灯效果的组件。
+默认的宽高是父元素的宽高，当内容小于父元素的宽度是，保持不动，如果内容宽度超过父元素，将开始向左滚动
+直到内容right 等于复原的right的时候，停止1秒钟，返回最开始 继续运动。
+页面可以多个复用，如有其他要求，可自行扩充，后者联系我，来增加更完善的功能，目前只使用当前小程序。'
+ -->
+
+<view id='wrap' class='wrapper'>
+    <view id='wrap-item' class='box {{move?"move":""}}' style="--mWidth--:{{mWidth}}">
+        {{name}}
+    </view>
+</view>
