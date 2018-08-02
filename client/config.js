@@ -9,7 +9,6 @@ const HOST = 'https://3cb7hqqz.qcloud.la';
 
 //  公共配置项
 export default {
-    host: HOST 
+  host: HOST, // 接口地址
+  code: 200, // 请求成功状态码
 }
-
- 
