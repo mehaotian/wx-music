@@ -9,7 +9,7 @@ author：meHaoTian
 <view wx:if="{{isPageShow}}" class="player-wrap {{isPageMove?'move':''}}">
     <view class="cover-box-bg"></view>
 </view>
-<view wx:if="{{isPageShow}}" class="player-wrap {{isPageMove?'move':''}}">
+<view wx:if="{{isPageShow}}" class="player-wrap {{isPageMove?'move':''}}" >
     <view class="cover-box">
         <!-- 当move 类存在时，光盘转动，这里是在音乐播放的时候才会添加 move类 -->
         <view class='cover-item {{play?"move":""}}'>
@@ -17,7 +17,7 @@ author：meHaoTian
             <image src="{{list.song.album.picUrl}}" mode='aspectFill'></image>
         </view>
     </view>
-    <view class="player-content">
+    <view class="player-content" bindtap="songPlayer">
         <view class='player-content-left box'>
             <view class='box-item'>
                 <marquee name='{{list.name}}'></marquee>
@@ -27,7 +27,7 @@ author：meHaoTian
             </view>
         </view>
         <view class='player-content-right box '>
-            <view class='right-box ' bindtap='playMusic'>
+            <view class='right-box ' catchtap='playMusic'>
                 <view class='music {{play?"icon-zanting":"icon-play"}} play '></view>
             </view>
             <view class='right-box '>

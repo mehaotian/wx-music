@@ -5,6 +5,11 @@ import util from './utils/util'
 App({
     onLaunch: function() {
         // console.log(interfaces.query)
+        console.log('第一次进入页面')
+        wx.setStorage({
+            key: 'isplay',
+            data: false,
+        })
 
     },
     $api: interfaces, // 将https 注册到 app中

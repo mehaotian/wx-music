@@ -18,3 +18,4 @@
         </view>
     </view>
 </view> 
+<player itemData="{{itemData}}"></player>

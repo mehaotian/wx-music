@@ -12,14 +12,25 @@ Component({
             type: Object, // 类型（必填），目前接受的类型包括：String, Number, Boolean, Object, Array, null（表示任意类型）
             value: {}, // 属性初始值（可选），如果未指定则会根据类型选择一个
             observer: function(newVal, oldVal, changedPath) {
-
+                console.log(newVal)
                 // 判断是否第一次进入
                 if (JSON.stringify(newVal) === '{}') {
                     let playlist = app.util.getPlaylist().playlist;
                     // 如果播放列表有数据，那么显示上次播放的歌曲，并暂停
                     if (playlist.length > 0) {
-                        this._playInit(app.util.getPlaylist().select, false)
+                        let playType = wx.getStorageSync('isplay');
+                        console.log(playType)
+                        // if (!playType) {
+                        //     playType = false
+                        // }
+                        this.setData({
+                            play: playType,
+                         
+                        })
+
+                        this._playInit(app.util.getPlaylist().select, playType)
                         // 显示播放器
+                        
                         this._showPage(true);
                     }
                     return;
@@ -52,6 +63,10 @@ Component({
 
             this.setData({
                 play: play
+            })
+            wx.setStorage({
+                key: 'isplay',
+                data: play,
             })
             if (play) {
                 innerAudioContext.play();
@@ -126,6 +141,10 @@ Component({
                 self.setData({
                     play: true
                 })
+                wx.setStorage({
+                    key: 'isplay',
+                    data: true,
+                })
             })
             // 播放失败
             innerAudioContext.onError((res) => {
@@ -155,6 +174,12 @@ Component({
             } else {
                 // 隐藏播放器
             }
+        },
+        /**
+         * 跳转到播放器页面
+         */
+        songPlayer() {
+            app.util.to('/pages/player/player')
         }
     }
 })

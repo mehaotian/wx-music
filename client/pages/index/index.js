@@ -11,6 +11,12 @@ Page({
         self = this; // 将this 绑定于全局
         this.init(); // 初始化获取首页数据
     },
+    onShow() {
+        this.setData({
+            itemData: {}
+        })
+    },
+
     /**
      * 跳转到 私人FM 排行 我的
      */

@@ -7,6 +7,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+        itemData:{},
         list: [{
                 'id': 0,
                 'name': '云音乐新歌榜',
