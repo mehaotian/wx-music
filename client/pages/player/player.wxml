@@ -1,10 +1,10 @@
 <view class='wrapper'>
     <view class='bg'></view>
-    <image class='image-bg' src="/image/test1.jpeg" mode='aspectFill'></image>
+    <image class='image-bg' src="{{list.song.album.picUrl}}" mode='aspectFill'></image>
     <view class="cover-box">
-        <view class='cover-item'>
+        <view class='cover-item {{play?"move":""}}'>
             <view class='center-style'></view>
-            <image src="/image/test1.jpeg" mode='aspectFill'></image>
+            <image src="{{list.song.album.picUrl}}" mode='aspectFill'></image>
         </view>
     </view>
     <view class="control-box">
@@ -13,8 +13,13 @@
                 <text class='music icon-icon_collect'></text>
             </view>
             <view class='head-title'>
-                <text>告白气球</text>
-                <text class='font-24 color-ccc'>周杰伦</text>
+                <view class='head-title-item'>
+                    <marquee name='{{list.name}}'></marquee>
+                </view>
+                <view class='head-title-item font-24 color-ccc'>
+                    <marquee name='{{list.strName}}'></marquee>
+                </view>
+                <!-- <text class='font-24 color-ccc'>周杰伦</text> -->
             </view>
             <view class="head-icon control-menu">
                 <text class='music icon-101'></text>
@@ -37,8 +42,8 @@
             <view class='button-icon'>
                 <text class='.music icon-shangyishoushangyige font-34'></text>
             </view>
-            <view class='button-icon play'>
-                <text class='music icon-play font-50'></text>
+            <view class='button-icon play' bindtap="playMusic">
+                <text class='music {{play?"icon-zanting":"icon-play"}} font-50'></text>
             </view>
             <view class='button-icon'>
                 <text class='.music icon-xiayigexiayishou font-34'></text>

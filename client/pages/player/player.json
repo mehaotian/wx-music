@@ -1,3 +1,6 @@
 {
-    "navigationBarTitleText": "播放器"
+    "navigationBarTitleText": "播放器",
+    "usingComponents": {
+        "marquee": "/components/marquee/marquee"
+    }
 }

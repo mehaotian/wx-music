@@ -1,7 +1,7 @@
 // component/player/player.js
 const app = getApp();
 // 创建并返回内部 audio 上下文 innerAudioContext 对象。本接口是 wx.createAudioContext 升级版
-const innerAudioContext = wx.createInnerAudioContext();
+const innerAudioContext = app.innerAudioContext;
 
 Component({
     /**
@@ -13,6 +13,8 @@ Component({
             value: {}, // 属性初始值（可选），如果未指定则会根据类型选择一个
             observer: function(newVal, oldVal, changedPath) {
                 console.log(newVal)
+                // 如果有更新暂停播放
+
                 // 判断是否第一次进入
                 if (JSON.stringify(newVal) === '{}') {
                     let playlist = app.util.getPlaylist().playlist;
@@ -25,12 +27,12 @@ Component({
                         // }
                         this.setData({
                             play: playType,
-                         
+
                         })
 
                         this._playInit(app.util.getPlaylist().select, playType)
                         // 显示播放器
-                        
+
                         this._showPage(true);
                     }
                     return;
@@ -102,12 +104,16 @@ Component({
             // 数据渲染
             this.setData({
                 list: item
+            }, () => {
+                // 请求播放数据
+                // 如果在setData回到中请求接口，避免数据渲染之后，歌曲不播放的问题
+                this.getUrlAjax({
+                    id: app.util.getPlaylist().select.id
+                }, off, isOne);
             })
+            // innerAudioContext.pause();
 
-            // 请求播放数据
-            this.getUrlAjax({
-                id: app.util.getPlaylist().select.id
-            }, off, isOne);
+
         },
         /**
          * 获取音乐url
