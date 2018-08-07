@@ -3,8 +3,8 @@
 <swiper class='swiper' indicator-dots indicator-active-color="#ff5a5f" autoplay="true" circular="true" previous-margin="0rpx" next-margin="0rpx">
     <swiper-item class="swiper-item" wx:for="{{list[0]}}" wx:key="swiper">
         <view class='swiper-content'>
-            <image class='image-bg' src="{{item.pic}}" mode='aspectFill'></image>
-            <view class="right-tag {{item.titleColor}}">{{item.typeTitle}}</view>
+            <image class='image-bg' src="{{item.picUrl}}" mode='aspectFill'></image>
+            <!-- <view class="right-tag {{item.titleColor}}">{{item.typeTitle}}</view> -->
         </view>
     </swiper-item>
 </swiper>

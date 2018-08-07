@@ -10,6 +10,7 @@ Component({
             value: '',
             observer: function(newVal, oldVal, changedPath) {
                 clearTimeout(this.data.timer);
+                console.log(1111)
                 this.setData({
                     mWidth: 0,
                     move: false

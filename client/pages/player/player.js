@@ -23,7 +23,8 @@ Page({
         })
 
         this._playInit(app.util.getPlaylist().select, playType)
-
+        console.log(innerAudioContext.duration)
+      
 
     },
     /**
