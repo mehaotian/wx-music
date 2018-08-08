@@ -84,7 +84,7 @@ Component({
          * isOne 点击列表播放音乐
          */
         _playInit(item, off = true, isOne = false) {
-
+            let self =this;
             let strName = '';
             // 拼接歌唱者和专辑名
             for (let i = 0; i < item.song.artists.length; i++) {
@@ -107,76 +107,14 @@ Component({
             }, () => {
                 // 请求播放数据
                 // 如果在setData回到中请求接口，避免数据渲染之后，歌曲不播放的问题
-                this.getUrlAjax({
+              app.Play.getUrlAjax(innerAudioContext,{
                     id: app.util.getPlaylist().select.id
-                }, off, isOne);
+              }, isOne, self);
 
             })
-            // innerAudioContext.pause();
-
 
         },
-        /**
-         * 获取音乐url
-         * params 获取音乐url的 id
-         * off 是否播放音乐
-         * isOne 是否列表点击播放
-         */
-        getUrlAjax(params, off, isOne) {
-            // app.$api.http_music_url(params).then((res) => {
-            //   console.log("准备播放")
-
-            // this._playAudio(res.data.data[0].url, off, isOne);
-            // 网易云api提供的第二种解决方案
-            this._playAudio(params.id, off, isOne);
-            // })
-        },
-        /**
-         * 最终播放音乐
-         *  url 音乐url
-         * off 是否播放音乐
-         * isOne 是否列表点击播放
-         */
-        _playAudio(url, off, isOne) {
-
-            let self = this;
-            // innerAudioContext.autoplay = off;
-            // innerAudioContext.src = url;
-            // 网易云api提供的第二种解决方案
-            innerAudioContext.src = `http://music.163.com/song/media/outer/url?id=${url}.mp3`;
-
-            //  判断是否播放，不用autoplay的原因是，如果由默认播放音乐，点击相同音乐不播放的问题
-            if (isOne) {
-                innerAudioContext.play();
-            }
-
-            // 播放成功
-            innerAudioContext.onPlay((res) => {
-
-                self.setData({
-                    play: true
-                })
-                wx.setStorage({
-                    key: 'isplay',
-                    data: true,
-                })
-            })
-            // 播放结束
-            innerAudioContext.onEnded((res) => {
-                console.log(res)
-                self.setData({
-                    play: false
-                })
-            })
-            // 播放失败
-            innerAudioContext.onError((res) => {
-                console.log(res.errMsg)
-                console.log(res.errCode)
-                self.setData({
-                    play: false
-                })
-            })
-        },
+       
 
         /**
          * 显示隐藏播放器
