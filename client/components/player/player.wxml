@@ -5,6 +5,7 @@ author：meHaoTian
  
  describe : 页面底部播放器
  -->
+ <playList></playList>
 <view wx:if="{{isPageShow}}" class="page-seize"></view>
 <view wx:if="{{isPageShow}}" class="player-wrap {{isPageMove?'move':''}}">
     <view class="cover-box-bg"></view>

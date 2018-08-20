@@ -1,0 +1,35 @@
+<!--components/playList/playList.wxml-->
+<view class='warp'>
+
+    <view class="box">
+        <view class='header'>
+            <view class='random'>
+                <text class='music icon-guanbi'></text>
+                <text style='margin-left:10rpx;'> 随机播放</text>
+            </view>
+            <view class='random'>
+                <text>清空 </text>
+                <text class='music icon-guanbi' style='margin-left:10rpx;'></text>
+            </view>
+        </view>
+        <view class='box-warp'>
+            <view wx:for="{{list}}" wx:key="*this" class='box-item'>
+                <view class='box-item-content'>
+                    <text>{{item.name}}</text>
+                    <view class='sub-title'>
+                        <block wx:for="{{item.song.artists}}" wx:key="artists" wx:for-item="artists" wx:for-index="artistsIndex">
+                            <!-- 可能会有多个歌手， 所以需要 循环 歌手名字 用  / 分割   -->
+                            <block wx:if="{{artistsIndex !== 0}}">/</block>{{artists.name}}
+                        </block>
+                        <!-- 测试歌手-测试专辑 -->
+                        - {{item.song.album.name }}
+
+                    </view>
+                </view>
+                <view class='close'>
+                    <text class='music icon-guanbi'></text>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

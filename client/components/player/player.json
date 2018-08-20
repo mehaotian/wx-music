@@ -1,6 +1,7 @@
 {
   "component": true,
   "usingComponents": {
-      "marquee":"/components/marquee/marquee"
+      "marquee":"/components/marquee/marquee",
+      "playList":"/components/playList/playList"
   }
 }
