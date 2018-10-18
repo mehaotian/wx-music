@@ -1,41 +1,41 @@
 <!--播放列表组件-->
 
 <view wx:if="{{show}}" class="warp mask {{isPageMove?'move':''}}">
-  <view class='cover-box-bg'></view>
+    <view class='cover-box-bg'></view>
 </view>
 <view wx:if="{{show}}" class="warp downMove {{isPageMove?'move':''}}" bindtap="closeMask">
-  <view class="box" catchtap='clear'>
-    <view class='header'>
-      <view class='random'>
-        <text class='music icon-icon-2'></text>
-        <text style='margin-left:10rpx;'> 随机播放 ( {{list.playlist.length}} )</text>
-      </view>
-      <view class='random'>
-        <text>清空 </text>
-        <text class='music icon-guanbi' style='margin-left:10rpx;'></text>
-      </view>
-    </view>
-    <view class='box-warp'>
-      <view wx:for="{{list}}" wx:key="*this" class='box-item'>
-        <view class="box-item-content {{item.checked?'active':''}}">
-          <view wx:if="{{item.checked?'active':''}}" class='nowing'>
-            <text class='music icon-shengyin'></text>
-          </view>
-          <text>{{item.name}}</text>
-          <view class="sub-title {{item.checked?'active':''}}">
-            <block wx:for="{{item.song.artists}}" wx:key="artists" wx:for-item="artists" wx:for-index="artistsIndex">
-              <!-- 可能会有多个歌手， 所以需要 循环 歌手名字 用  / 分割   -->
-              <block wx:if="{{artistsIndex !== 0}}">/</block>{{artists.name}}
-            </block>
-            <!-- 测试歌手-测试专辑 -->
-            - {{item.song.album.name }}
-          </view>
+    <view class="box" catchtap='clear'>
+        <view class='header'>
+            <view class='random'>
+                <text class='music icon-icon-2'></text>
+                <text style='margin-left:10rpx;'> 随机播放 ( {{list.playlist.length}} )</text>
+            </view>
+            <view class='random'>
+                <text>清空 </text>
+                <text class='music icon-guanbi' style='margin-left:10rpx;'></text>
+            </view>
         </view>
-        <!-- 删除本地歌曲 -->
-        <view class='close' data-key="{{index}}"  catchtap='delSong'>
-          <text class='music icon-guanbi'></text>
+        <view class='box-warp'>
+            <view wx:for="{{list}}" wx:key="*this" class='box-item' data-key="{{key}}" bindtap="play">
+                <view class="box-item-content {{item.checked?'active':''}}">
+                    <view wx:if="{{item.checked?'active':''}}" class='nowing'>
+                        <text class='music icon-shengyin'></text>
+                    </view>
+                    <text>{{item.name}}</text>
+                    <view class="sub-title {{item.checked?'active':''}}">
+                        <block wx:for="{{item.song.artists}}" wx:key="artists" wx:for-item="artists" wx:for-index="artistsIndex">
+                            <!-- 可能会有多个歌手， 所以需要 循环 歌手名字 用  / 分割   -->
+                            <block wx:if="{{artistsIndex !== 0}}">/</block>{{artists.name}}
+                        </block>
+                        <!-- 测试歌手-测试专辑 -->
+                        - {{item.song.album.name }}
+                    </view>
+                </view>
+                <!-- 删除本地歌曲 -->
+                <view class='close' data-key="{{index}}" catchtap='delSong'>
+                    <text class='music icon-ego-guanbi'></text>
+                </view>
+            </view>
         </view>
-      </view>
     </view>
-  </view>
 </view>

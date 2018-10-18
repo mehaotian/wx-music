@@ -50,7 +50,7 @@ Component({
     isPageMove: false, // 播放组件动画关键点
     play: false, // 是否播放
     list: {}, // 音乐数据列表
-    isPlayListShow: true, // 是否显示播放列表
+    isPlayListShow: false, // 是否显示播放列表
   },
 
   /**
