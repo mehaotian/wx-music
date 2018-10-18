@@ -5,35 +5,43 @@ author：meHaoTian
  
  describe : 页面底部播放器
  -->
- <playList></playList>
+
+
+
+<playList show="{{isPlayListShow}}"></playList>
+
+<!-- 元素占位，布局用 -->
 <view wx:if="{{isPageShow}}" class="page-seize"></view>
 <view wx:if="{{isPageShow}}" class="player-wrap {{isPageMove?'move':''}}">
-    <view class="cover-box-bg"></view>
+  <view class="cover-box-bg"></view>
 </view>
-<view wx:if="{{isPageShow}}" class="player-wrap {{isPageMove?'move':''}}" >
-    <view class="cover-box">
-        <!-- 当move 类存在时，光盘转动，这里是在音乐播放的时候才会添加 move类 -->
-        <view class='cover-item {{play?"move":""}}'>
-            <view class='center-style'></view>
-            <image src="{{list.song.album.picUrl}}" mode='aspectFill'></image>
-        </view>
+
+<view wx:if="{{isPageShow}}" class="player-wrap {{isPageMove?'move':''}}">
+  <view class="cover-box">
+    <!-- 当move 类存在时，光盘转动，这里是在音乐播放的时候才会添加 move类 -->
+    <view class='cover-item {{play?"move":""}}'>
+      <view class='center-style'></view>
+      <image src="{{list.song.album.picUrl}}" mode='aspectFill'></image>
     </view>
-    <view class="player-content" bindtap="songPlayer">
-        <view class='player-content-left box'>
-            <view class='box-item'>
-                <marquee name='{{list.name}}'></marquee>
-            </view>
-            <view class='box-item album '>
-                <marquee name="{{list.strName}}"></marquee>
-            </view>
-        </view>
-        <view class='player-content-right box '>
-            <view class='right-box ' catchtap='playMusic'>
-                <view class='music {{play?"icon-zanting":"icon-play"}} play '></view>
-            </view>
-            <view class='right-box '>
-                <text class='.music icon-caidan '></text>
-            </view>
-        </view>
+  </view>
+  <view class="player-content" bindtap="songPlayer">
+    <view class='player-content-left box'>
+      <view class='box-item'>
+        <marquee name='{{list.name}}'></marquee>
+      </view>
+      <view class='box-item album '>
+        <marquee name="{{list.strName}}"></marquee>
+      </view>
     </view>
+    <view class='player-content-right box '>
+      <!-- 播放/暂停按键 -->
+      <view class='right-box ' catchtap='playMusic'>
+        <view class='music {{play?"icon-zanting":"icon-play"}} play '></view>
+      </view>
+      <!-- 播放列表 -->
+      <view class='right-box' catchtap='playList'>
+        <text class='.music icon-caidan'></text>
+      </view>
+    </view>
+  </view>
 </view>
