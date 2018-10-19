@@ -8,10 +8,10 @@ author：meHaoTian
 
 
 
-<playList show="{{isPlayListShow}}"></playList>
+<playList show="{{isPlayListShow}}" bindisroll="isroll" bindupdate="updateSong"></playList>
 
 <!-- 元素占位，布局用 -->
-<view wx:if="{{isPageShow}}" class="page-seize"></view>
+<view wx:if="{{isPageShow && !isPlayListShow}}" class="page-seize"></view> 
 <view wx:if="{{isPageShow}}" class="player-wrap {{isPageMove?'move':''}}">
   <view class="cover-box-bg"></view>
 </view>

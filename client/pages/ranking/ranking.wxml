@@ -1,4 +1,4 @@
-<view class="ranking-wrap">
+<view class="ranking-wrap {{isroll?'':'scroll'}}">
     <view class='rank-item-title'>官方榜</view>
     <view class="rank-item" >
         <view class='rank-box' wx:for="{{list}}" wx:key="index" data-idx="{{item.id}}" bindtap='detailFn'>
@@ -18,4 +18,4 @@
         </view>
     </view>
 </view> 
-<player itemData="{{itemData}}"></player>
+<player itemData="{{itemData}}" bindisroll="isroll"></player>

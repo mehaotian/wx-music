@@ -1,59 +1,61 @@
+<playList show="{{isPlayListShow}}" bindupdate="updateSong">
+</playList>
 <view class='wrapper'>
-    <view class='bg'></view>
-    <image class='image-bg' src="{{list.song.album.picUrl}}" mode='aspectFill'></image>
-    <view class="cover-box">
-        <view class='cover-item {{play?"move":""}}'>
-            <view class='center-style'></view>
-            <image src="{{list.song.album.picUrl}}" mode='aspectFill'></image>
-        </view>
+  <view class='bg'></view>
+  <image class='image-bg' src="{{list.song.album.picUrl}}" mode='aspectFill'></image>
+  <view class="cover-box">
+    <view class='cover-item {{play?"move":""}}'>
+      <view class='center-style'></view>
+      <image src="{{list.song.album.picUrl}}" mode='aspectFill'></image>
     </view>
-    <view class="control-box">
-        <view class='control-head'>
-            <view class="head-icon control-like">
-                <text class='music icon-icon_collect'></text>
-            </view>
-            <view class='head-title'>
-                <view class='head-title-item'>
-                    <marquee name='{{list.name}}'></marquee>
-                </view>
-                <view class='head-title-item font-24 color-ccc'>
-                    <marquee name='{{list.strName}}'></marquee>
-                </view>
-                <!-- <text class='font-24 color-ccc'>周杰伦</text> -->
-            </view>
-            <view class="head-icon control-menu">
-                <text class='music icon-101'></text>
-            </view>
+  </view>
+  <view class="control-box">
+    <view class='control-head'>
+      <view class="head-icon control-like">
+        <text class='music icon-icon_collect'></text>
+      </view>
+      <view class='head-title'>
+        <view class='head-title-item'>
+          <marquee name='{{list.name}}'></marquee>
         </view>
-        <view class='progress'>
-            <view class="progress-box">
-                <progress percent="80" activeColor="#ff5a5f" />
-            </view>
-            <view class='progress-time'>
-                <text class=''>02:00</text>
-                <text class=''>04:32</text>
-            </view>
-
+        <view class='head-title-item font-24 color-ccc'>
+          <marquee name='{{list.strName}}'></marquee>
         </view>
-        <view class='button-group'>
-            <view class='button-icon'>
-                <text class='music icon-icon-2 font-50'></text>
-            </view>
-            <view class='button-icon'>
-                <text class='.music icon-shangyishoushangyige font-34'></text>
-            </view>
-            <view class='button-icon play' bindtap="playMusic">
-                <text class='music {{play?"icon-zanting":"icon-play"}} font-50'></text>
-            </view>
-            <view class='button-icon'>
-                <text class='.music icon-xiayigexiayishou font-34'></text>
-            </view>
-            <view class='button-icon'>
-                <text class='.music icon-caidan font-50'></text>
-            </view>
-
-        </view>
+        <!-- <text class='font-24 color-ccc'>周杰伦</text> -->
+      </view>
+      <view class="head-icon control-menu">
+        <text class='music icon-101'></text>
+      </view>
     </view>
+    <view class='progress'>
+      <view class="progress-box">
+        <progress percent="80" activeColor="#ff5a5f" />
+      </view>
+      <view class='progress-time'>
+        <text class=''>02:00</text>
+        <text class=''>04:32</text>
+      </view>
+
+    </view>
+    <view class='button-group'>
+      <view class='button-icon' bindtap='randomPlay'>
+        <text class='music {{random[randomIndex].icon}} font-50'></text>
+      </view>
+      <view class='button-icon' data-type="pre" bindtap="switchSong">
+        <text class='.music icon-shangyishoushangyige font-34'></text>
+      </view>
+      <view class='button-icon play' bindtap="playMusic">
+        <text class='music {{play?"icon-zanting":"icon-play"}} font-50'></text>
+      </view>
+      <view class='button-icon' data-type="next" bindtap="switchSong">
+        <text class='.music icon-xiayigexiayishou font-34'></text>
+      </view>
+      <view class='button-icon' catchtap='playList'>
+        <text class='.music icon-caidan font-50'></text>
+      </view>
+
+    </view>
+  </view>
 
 
 </view>

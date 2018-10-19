@@ -13,11 +13,9 @@ Component({
       value: {}, // 属性初始值（可选），如果未指定则会根据类型选择一个
       observer: function(newVal, oldVal, changedPath) {
         // console.log(newVal)
-        // 如果有更新暂停播放
-
         // 判断是否第一次进入
         if (JSON.stringify(newVal) === '{}') {
-          let playlist = app.util.getPlaylist().playlist;
+          let playlist = app.Play.getPlaylist().playlist;
           // 如果播放列表有数据，那么显示上次播放的歌曲，并暂停
           if (playlist.length > 0) {
             let playType = wx.getStorageSync('isplay');
@@ -30,9 +28,12 @@ Component({
 
             })
 
-            this._playInit(app.util.getPlaylist().select, playType)
+            this._playInit(app.Play.getPlaylist().select, playType)
             // 显示播放器
+            console.log(playlist.length)
             this._showPage(true);
+          } else {
+            this._showPage(false);
           }
           return;
         }
@@ -62,7 +63,7 @@ Component({
      */
     playMusic() {
       let play = !this.data.play;
-
+      // TODO 手动更改播放状态，目前待优化
       this.setData({
         play: play
       })
@@ -70,6 +71,8 @@ Component({
         key: 'isplay',
         data: play,
       })
+
+      // 根据播放状态来判断当前是播放还是暂停
       if (play) {
         innerAudioContext.play();
       } else {
@@ -84,6 +87,24 @@ Component({
       this.setData({
         isPlayListShow: true
       })
+      // 向父组件发送是否滚动页面事件
+      this.triggerEvent('isroll', {
+        show: false
+      })
+
+    },
+    /**
+     * 页面滚动锁，控制页面是否滚动
+     */
+    isroll(e) {
+      // 向父组件发送是否滚动页面事件
+      this.triggerEvent('isroll', {
+        show: e.detail.show
+      })
+      // 设置本页面是否打开播放列表
+      this.setData({
+        isPlayListShow: false
+      })
     },
     /**
      * 初始化播放音乐
@@ -93,20 +114,10 @@ Component({
      */
     _playInit(item, off = true, isOne = false) {
       let self = this;
-      let strName = '';
-      // 拼接歌唱者和专辑名
-      for (let i = 0; i < item.song.artists.length; i++) {
-        if (i !== 0) {
-          strName += ' / '
-        }
-        strName += item.song.artists[i].name
-      }
 
-      strName += " - " + item.song.album.name;
-      item.strName = strName;
 
       // 添加到播放列表
-      app.util.setPlaylist(item);
+      app.Play.setPlaylist(item);
       // 显示播放器
       this._showPage(true);
       // 数据渲染
@@ -116,7 +127,7 @@ Component({
         // 请求播放数据
         // 如果在setData回到中请求接口，避免数据渲染之后，歌曲不播放的问题
         app.Play.getUrlAjax(innerAudioContext, {
-          id: app.util.getPlaylist().select.id
+          id: app.Play.getPlaylist().select.id
         }, isOne, self);
 
       })
@@ -141,6 +152,15 @@ Component({
         })
       } else {
         // 隐藏播放器
+        this.setData({
+          isPageMove: false
+        }, () => {
+          setTimeout(() => {
+            this.setData({
+              isPageShow: false
+            })
+          }, 1500)
+        })
       }
     },
     /**
@@ -148,6 +168,33 @@ Component({
      */
     songPlayer() {
       app.util.to('/pages/player/player')
+    },
+    /**
+     * 删除歌曲之后，更新当前数据
+     */
+    updateSong(e) {
+      let play = true
+      console.log(e.detail.show)
+      // 播放列表空
+      if (e.detail.show) {
+        this.setData({
+          isPlayListShow: false,
+          play: false
+
+        })
+        // 向父组件发送是否滚动页面事件
+        this.triggerEvent('isroll', {
+          show: true
+        })
+        this._showPage(false)
+        wx.setStorage({
+          key: 'isplay',
+          data: false,
+        })
+        innerAudioContext.pause();
+        return
+      }
+      this._playInit(app.Play.getPlaylist().select, false, true)
     }
   }
 })

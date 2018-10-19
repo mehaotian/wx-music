@@ -130,3 +130,10 @@
     background-color: #e8e8e8;
     bottom: -1px;
 }
+
+
+/* 控制外层是否滚动 */
+.scroll {
+  height: 100vh;
+  overflow: hidden;
+}

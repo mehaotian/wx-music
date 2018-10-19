@@ -128,3 +128,11 @@
 .downMove.move {
   transform: translateY(0%);
 }
+
+
+.no-data{
+  color: #6666;
+  text-align: center;
+  margin-top: 50rpx;
+  font-size: 28rpx;
+}

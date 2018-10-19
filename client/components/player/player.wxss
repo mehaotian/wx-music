@@ -1,6 +1,7 @@
 /* component/player/player.wxss */
 @import '../../common/font/iconfont.wxss';
 
+
 .player-wrap {
     position: fixed;
     bottom: 0;

@@ -1,4 +1,3 @@
-
 class Play {
   constructor() {
     // 添加url到util中
@@ -12,6 +11,18 @@ class Play {
     let playlist = wx.getStorageSync('playlist');
     // 是否第一首歌
     let isPushData = true;
+
+    // 拼接歌唱者和专辑名
+    let strName = '';
+    for (let i = 0; i < parameter.song.artists.length; i++) {
+      if (i !== 0) {
+        strName += ' / '
+      }
+      strName += parameter.song.artists[i].name
+    }
+
+    strName += " - " + parameter.song.album.name;
+    parameter.strName = strName;
     // 判断是否第一首歌
     if (!playlist) {
       playlist = [];
@@ -74,7 +85,7 @@ class Play {
    * isOne 是否列表点击播放
    * self 小程序实例
    */
-  getUrlAjax(innerAudioContext,params, isOne,self) {
+  getUrlAjax(innerAudioContext, params, isOne, self) {
     // app.$api.http_music_url(params).then((res) => {
     //   console.log("准备播放")
 
@@ -88,7 +99,7 @@ class Play {
    *  url 音乐url
    * isOne 是否列表点击播放
    */
-  _playAudio(innerAudioContext,url, isOne,self) {
+  _playAudio(innerAudioContext, url, isOne, self) {
 
     // let self = this;
     // innerAudioContext.autoplay = off;
@@ -127,6 +138,77 @@ class Play {
         play: false
       })
     })
+  }
+  /**
+   * 播放模式切换 ,返回下一首播放曲目
+   * types: true ||false 歌曲切换
+   * auto ：true || false 是否自动播放，如果为true 是单曲循环 否则列表循环
+   * del 删除歌曲
+   */
+  randomPlay(types, auto = true, del = false) {
+    let random = wx.getStorageSync('random:play') // 0:随机播放 1：顺序播放 2：单曲循环
+    let songs = this.getPlaylist().playlist // 歌曲数据列表
+    let index = songs.findIndex((item, index) => item.checked) // 当前播放歌曲位置索引
+    // let item = songs.find((item, index) => item.checked) // 当前播放歌曲位置
+    // 所有歌曲默认为停止播放 (因为当前程序只会有一首歌曲播放，所以直接帮当前播放状态设置为false即可)
+    songs[index].checked = false
+    // 获取下一首歌曲的歌曲数据
+
+    switch (random) {
+      case 0:
+        // 随机播放
+        if (del) {
+          index++
+          if (index > songs.length - 1) {
+            index = 0
+          }
+        } else {
+          index = Math.floor(Math.random() * songs.length)
+        }
+        break
+      case 1:
+        // 列表循环
+        if (types === 'next') {
+          index++
+          if (index > songs.length - 1) {
+            index = 0
+          }
+        } else {
+          index--
+          if (index < 0) {
+            index = songs.length - 1
+          }
+        }
+
+        break
+      case 2:
+        // 单曲播放
+        if (!auto) {
+          if (types === 'next') {
+            index++
+            if (index > songs.length - 1) {
+              index = 0
+            }
+          } else {
+            index--
+            if (index < 0) {
+              index = songs.length - 1
+            }
+          }
+
+
+        }
+        break
+    }
+
+    console.log(index)
+    // 重新设置播放列表
+    this.setPlaylist(songs[index])
+
+    // 返回当前播放音乐
+    return {
+      song: songs[index]
+    }
   }
 
 }
