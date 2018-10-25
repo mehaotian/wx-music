@@ -1,61 +1,62 @@
-<view class="detail-wrap" style='opacity: {{pageShow?"1":"0"}};'> 
-    <view class='cover-box'>
-        <image class='cover-image-bg' src="{{list.creator.backgroundUrl}}" mode='aspectFill'></image>
-        <view class="cover-item">
-            <view class='cover-head'>
-                <image class='' src="{{list.coverImgUrl}}" mode='aspectFill'></image>
-            </view>
-            <view class="cover-content">
-                <view>{{list.name}}</view>
-                <view class="cover-info">
-                    <view class="info-head">
-                        <image class='' src="{{list.creator.avatarUrl}}" mode='aspectFill'></image>
-                    </view>
-                    <view class="cover-title">
-                        {{list.creator.nickname}}
-                    </view>
-                </view>
-            </view>
-
+<view class="detail-wrap {{isroll?'':'scroll'}}" style='opacity: {{pageShow?"1":"0"}};'>
+  <view class='cover-box'>
+    <image class='cover-image-bg' src="{{list.creator.backgroundUrl}}" mode='aspectFill'></image>
+    <view class="cover-item">
+      <view class='cover-head'>
+        <image class='' src="{{list.coverImgUrl}}" mode='aspectFill'></image>
+      </view>
+      <view class="cover-content">
+        <view>{{list.name}}</view>
+        <view class="cover-info">
+          <view class="info-head">
+            <image class='' src="{{list.creator.avatarUrl}}" mode='aspectFill'></image>
+          </view>
+          <view class="cover-title">
+            {{list.creator.nickname}}
+          </view>
         </view>
+      </view>
+
     </view>
-    <view class='detail-head-wrap'>
-        <view class="play-icon">
-            <text class="music icon-play"></text>
-        </view>
-        <view class='color-ccc'>全部播放
-            <text class='color-666'>(共{{list.trackCount}}首)</text>
-        </view>
+  </view>
+  <view class='detail-head-wrap'>
+    <view class="play-icon">
+      <text class="music icon-play"></text>
     </view>
-    <view class='item-box' wx:for="{{list.tracks}}" wx:key="index">
-        <view class='head'>
-            <text wx:if="{{index === 0}}" class='music icon-first font-40 one'></text>
-            <text wx:elif="{{index === 1}}" class='music icon-second font-40 two'></text>
-            <text wx:elif="{{index === 2}}" class='music icon-third font-40 three'></text>
-            <text wx:else class='font-28 color-999'>{{index+1}}</text>
-        </view>
-        <view class='head head-image'>
-            <image class='image-bg' src="{{types?item.al.picUrl:item.album.picUrl}}" mode='aspectFill'></image>
-        </view>
-        <view class='content'>
-            <view class='text-ellipsis'>{{item.name}}</view>
-            <view class='font-24 color-999 text-ellipsis-2'>
-
-                <block wx:for="{{types?item.ar:item.artists}}" wx:key="artists" wx:for-item="artists" wx:for-index="artistsIndex">
-                    <!-- 可能会有多个歌手， 所以需要 循环 歌手名字 用  / 分割   -->
-                    <block wx:if="{{artistsIndex !== 0}}">/</block>{{artists.name}}
-                </block>
-                <!-- 测试歌手-测试专辑 -->
-                - {{item.album.name }}
-
-            </view>
-
-
-
-        </view>
-        <view class="play-icon">
-            <text class="music icon-play"></text>
-        </view>
+    <view class='color-ccc'>全部播放
+      <text class='color-666'>(共{{list.trackCount}}首)</text>
     </view>
+  </view>
+  <view class='item-box' wx:for="{{list.tracks}}" wx:key="index" data-item="{{item}}" bindtap="playMusic">
+    <view wx:if="{{types}}" class='head'>
+      <text wx:if="{{index === 0}}" class='music icon-first font-40 one'></text>
+      <text wx:elif="{{index === 1}}" class='music icon-second font-40 two'></text>
+      <text wx:elif="{{index === 2}}" class='music icon-third font-40 three'></text>
+      <text wx:else class='font-28 color-999'>{{index+1}}</text>
+    </view>
+    <view class='head head-image'>
+      <image class='image-bg' src="{{item.al.picUrl}}" mode='aspectFill'></image>
+    </view>
+    <view class='content'>
+      <view class='text-ellipsis'>{{item.name}}</view>
+      <view class='font-24 color-999 text-ellipsis-2'>
+
+        <block wx:for="{{item.ar}}" wx:key="artists" wx:for-item="artists" wx:for-index="artistsIndex">
+          <!-- 可能会有多个歌手， 所以需要 循环 歌手名字 用  / 分割   -->
+          <block wx:if="{{artistsIndex !== 0}}">/</block>{{artists.name}}
+        </block>
+        <!-- 测试歌手-测试专辑 -->
+        - {{item.al.name }}
+
+      </view>
+ 
+    </view>
+    <view class="play-icon">
+      <text class="music {{currentId === item.id?'icon-zanting':'icon-play'}}"></text>
+    </view>
+  </view>
 
 </view>
+
+<!-- 底部播放器 -->
+<player itemData="{{itemData}}" bindisroll="isroll"></player>

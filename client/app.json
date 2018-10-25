@@ -1,18 +1,19 @@
 {
-    "pages": [
-        "pages/index/index",
-        "pages/me/me",
-        "pages/player/player",
-        "pages/privateFM/privateFM",
-        "pages/rankDetail/rankDetail",
-        "pages/ranking/ranking",
-        "pages/login/login"
-    ],
-    "window": {
-        "backgroundColor": "#333333",
-        "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#333333",
-        "navigationBarTitleText": "我的音乐",
-        "navigationBarTextStyle": "white"
-    }
+  "pages": [
+    "pages/index/index",
+    "pages/me/me",
+    "pages/player/player",
+    "pages/privateFM/privateFM",
+    "pages/rankDetail/rankDetail",
+    "pages/ranking/ranking",
+    "pages/login/login",
+    "pages/songSheetList/songSheetList"
+  ],
+  "window": {
+    "backgroundColor": "#333333",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#333333",
+    "navigationBarTitleText": "我的音乐",
+    "navigationBarTextStyle": "white"
+  }
 }

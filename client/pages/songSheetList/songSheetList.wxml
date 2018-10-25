@@ -1,0 +1,32 @@
+<!-- 首页  -->
+<!-- 轮播图 -->
+<view class='{{isroll?"":"scroll"}}'>
+
+  <!-- 歌曲个性推荐  -->
+  <view class="list-box-wrap">
+    <!-- 推荐歌单  -->
+    <view class="list-content grid">
+      <view class="list-item " wx:for="{{list}}" wx:key="grid" data-id="{{item.id}}" bindtap='songFn'>
+        <image class='list-item-image-bg' src="{{item.coverImgUrl}}"></image>
+        <view class="list-item-head">
+          <view class="list-item-head-num">{{item.trackCount}}首</view>
+          <view class="list-item-head-play">{{item.playCount}}次播放</view>
+          <view class='list-item-head-box'>
+            <image src="{{item.coverImgUrl}}" mode='aspectFill'></image>
+          </view>
+        </view>
+        <view class='list-item-info text-ellipsis-2 '>
+          {{item.name}}
+        </view>
+        <view class='list-item-info-2 text-ellipsis font-24'>
+          来自 {{item.creator.nickname}}
+        </view>
+
+      </view>
+    </view>
+  </view>
+
+</view>
+
+<!-- 底部播放器 -->
+<player itemData="{{itemData}}" bindisroll="isroll"></player>

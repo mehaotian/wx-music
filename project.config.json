@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 8,
 			"list": [
 				{
 					"id": -1,
@@ -67,6 +67,24 @@
 					"name": "登陆",
 					"pathName": "pages/login/login",
 					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "歌单详情",
+					"pathName": "pages/rankDetail/rankDetail",
+					"query": "idx=2144082923&types=song"
+				},
+				{
+					"id": -1,
+					"name": "歌单列表",
+					"pathName": "pages/songSheetList/songSheetList",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "歌单列表",
+					"pathName": "pages/rankDetail/rankDetail",
+					"query": "idx=828069872&types=song"
 				}
 			]
 		}

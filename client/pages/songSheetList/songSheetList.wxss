@@ -1,0 +1,251 @@
+page {
+    background: #333;
+}
+
+/*轮播图  */
+
+.swiper {
+    width: 100%;
+    height: 350rpx;
+    /* background: #ccc; */
+    box-sizing: border-box;
+    box-shadow: 0 2px 10px 2px rgba(0, 0, 0, 0.5);
+}
+
+.swiper-item {
+    /* background: #f5f5f5; */
+    padding: 0rpx;
+    box-sizing: border-box;
+}
+
+.swiper-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.right-tag {
+    position: absolute;
+    bottom: 10rpx;
+    right: 0;
+    /* height: 20rpx; */
+    font-size: 24rpx;
+    color: #fff;
+    padding: 5rpx 20rpx;
+    border-top-left-radius: 50rpx;
+    border-bottom-left-radius: 50rpx;
+}
+
+.right-tag.red {
+    background: rgba(255, 0, 0, 0.5);
+}
+
+.right-tag.blue {
+    background: rgba(0, 0, 255, 0.5);
+}
+
+.swiper-content image {
+    width: 100%;
+}
+
+/* 功能样式  */
+
+.modular-wrap {
+    display: flex;
+    margin-top: 20rpx;
+    padding: 15rpx;
+}
+
+.modular-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 32rpx;
+    margin: 5rpx;
+    width: 100%;
+    height: 80rpx;
+    border: 1px rgba(0, 0, 0, 0.2) solid;
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.4),
+                0px 1px 1px 0px rgba(255, 255, 255, 0.1) inset;
+    /* border-radius: 4rpx; */
+    color: #999;
+    text-shadow: 1px -1px 2px rgba(0, 0, 0, 0.8);
+    /* background: #f9f9f9; */
+    transition: all 0.2s;
+}
+
+.modular-item:active {
+    border: 1px #222 solid;
+    box-shadow: 1px -1px 0px 0px rgba(0, 0, 0, 0.8);
+}
+
+/* 列表样式  */
+
+.list-box-wrap {
+    font-size: 28rpx;
+}
+
+.list-item {
+    position: relative;
+    display: flex;
+    margin: 20rpx;
+    padding: 20rpx;
+    box-sizing: border-box;
+    color: #999;
+    /* border-bottom: 1px #444 solid; */
+    border-radius: 4rpx;
+    border: 1px #666 solid;
+    box-shadow: 0px 0px 4rpx 2rpx rgba(0, 0, 0, 1);
+    background: rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.list-item:active {
+    box-shadow: 0px 0px 4rpx 2rpx rgba(0, 0, 0, 0);
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px #222 solid;
+}
+
+.list-item .list-item-image-bg, .list-item-image-bg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* height: 100%; */
+    z-index: -1;
+    filter: blur(15rpx);
+}
+
+.list-item .list-content-head {
+    width: 100rpx;
+    height: 100rpx;
+    flex-shrink: 0;
+    background: #ddd;
+    border-radius: 4rpx;
+    border: 1px #666 solid;
+}
+
+.list-content-head image {
+    width: 100%;
+    height: 100%;
+}
+
+.list-item .list-content-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    padding-left: 20rpx;
+    overflow: hidden;
+}
+
+.list-item .list-content-play {
+    width: 60rpx;
+    display: flex;
+    align-items: center;
+    font-size: 40rpx;
+}
+
+/* 六宫格列表  */
+
+.grid {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 15rpx;
+}
+
+.grid .list-item {
+    flex-direction: column;
+    margin: 10rpx;
+    width: 30%;
+    flex-grow: 2;
+}
+
+.grid .list-item .list-item-head {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-top: 90%;
+    background: #ddd;
+    border: 1px #666 solid;
+    overflow: hidden;
+}
+
+.grid .list-item .list-item-head .list-item-head-num {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 4rpx 10rpx;
+    border-radius: 5rpx;
+    font-size: 22rpx;
+    z-index: 999;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+}
+
+.grid .list-item .list-item-head .list-item-head-play {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    font-size: 22rpx;
+    z-index: 999;
+    padding: 4rpx 10rpx;
+    background: rgba(0, 0, 0, 0.1);
+    color: #fff;
+}
+
+.grid .list-item .list-item-head  .list-item-head-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 90rpx;
+    height: 90rpx;
+    z-index: 999;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.list-item-head-icon text {
+    margin-left: 5rpx;
+}
+
+.grid .list-item .list-item-head .list-item-head-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.grid .list-item .list-item-head .list-item-head-box image {
+    width: 100%;
+    height: 100%;
+}
+
+.grid .list-item .list-item-info {
+    overflow: hidden;
+    padding: 0 6rpx;
+    margin: 10rpx 0;
+    margin-bottom: 10rpx;
+    box-sizing: border-box;
+    font-size: 26rpx;
+    color: #ccc;
+    height: 70rpx;
+}
+
+.grid .list-item .list-item-info-2 {
+    overflow: hidden;
+    margin: 0;
+}

@@ -5,8 +5,8 @@ let self;
 Page({
   data: {
     isroll: true, // 页面滚动开关
-    itemData: {},
-    list: {} // 首页数据
+    list: [], // 首页数据
+    itemData: {}
   },
   onLoad() {
     self = this; // 将this 绑定于全局
@@ -16,25 +16,6 @@ Page({
     this.setData({
       itemData: {}
     })
-  },
-
-  /**
-   * 跳转到 私人FM 排行 我的
-   */
-  jumpPage(e) {
-    // 获取 私人FM（0） 、排行（1） 、 我的（2） 三个按钮状态
-    let typesPage = e.target.dataset.type;
-    // 获取跳转的url
-    let url = e.target.dataset.url;
-    // 判断是否 私人FM 、我的按钮。这两个按钮点击要判断是否登陆，需要额外处理
-    if (typesPage == 0 || typesPage == 2) {
-      //  判断是否登陆
-      let userinfo = app.util.user(url);
-      // 如果没有登陆，停止操作，会自动进入登陆页面
-      if (!userinfo) return;
-    }
-    // 页面跳转
-    app.util.to(url);
   },
   /**
    * 跳转歌单
@@ -53,7 +34,6 @@ Page({
    */
   playMusic(event) {
     let item = event.currentTarget.dataset.item;
-    console.log(item)
     this.setData({
       itemData: item
     })
@@ -61,49 +41,31 @@ Page({
   },
   // 初始化数据获取
   init() {
-    //获取轮播图数据
-    this.getAjaxRequest(0);
-
-    // 推荐音乐
-    this.getAjaxRequest(1);
-
     // 推荐歌单
-    this.getAjaxRequest(2);
-
-    // 推荐 mv
-    this.getAjaxRequest(3);
+    this.getAjaxRequest();
   },
   /**
    *  获取首页数据 
    *  types   0 ：轮播图数据 ；1:推荐音乐；2:推荐歌单；3:推荐 mv；
    */
-
   getAjaxRequest(types) {
-    let params = {};
-    // type == 2 ，说明是推荐歌单，需要传入参数，获取前6条数据
-    if (types === 2) {
-      params = {
-        limit: 6
-      }
-    }
+    let params = {
+      limit: 30
+    };
+
     // 开始请求接口
-    app.$api[self.setDataSel(types).url](params).then((res) => {
+    app.$api.http_highquality(params).then((res) => {
       //  不同数据处理
       let obj = self.data.list;
-      if (!obj[types]) obj[types] = [];
-      obj[types] = res.data[self.setDataSel(types).data];
+      obj = res.data.playlists;
 
       //  推荐歌单的 播放次数处理单独处理
-      if (types === 2 || types === 3) {
-
-        for (let i = 0; i < obj[types].length; i++) {
-          if (obj[types][i].playCount > 10000) {
-            let playCount = obj[types][i].playCount;
-            playCount = (playCount / 10000).toFixed(1) + '万';
-            obj[types][i].playCount = playCount;
-          }
+      for (let i = 0; i < obj.length; i++) {
+        if (obj[i].playCount > 10000) {
+          let playCount = obj[i].playCount;
+          playCount = (playCount / 10000).toFixed(1) + '万';
+          obj[i].playCount = playCount;
         }
-
       }
       // 数据渲染
       self.setData({

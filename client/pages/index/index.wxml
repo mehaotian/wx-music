@@ -5,7 +5,7 @@
   <swiper class='swiper' indicator-dots indicator-active-color="#ff5a5f" autoplay="true" circular="true" previous-margin="0rpx" next-margin="0rpx">
     <swiper-item class="swiper-item" wx:for="{{list[0]}}" wx:key="swiper">
       <view class='swiper-content'>
-        <image class='image-bg' src="{{item.pic||item.picUrl}}" mode='aspectFill'></image>
+        <image class='image-bg' src="{{item.pic||item.picUrl||item.imageUrl}}" mode='aspectFill'></image>
         <!-- <view class="right-tag {{item.titleColor}}">{{item.typeTitle}}</view> -->
       </view>
     </swiper-item>
@@ -29,7 +29,8 @@
     <title name="个性化推荐"></title>
     <!-- 推荐内容，是一个竖列表 -->
     <view class="list-content">
-      <view wx:if="{{index < 5}}" class="list-item" wx:for="{{list[1]}}" wx:key="list" data-item="{{item}}" bindtap="playMusic">
+    <!-- wx:if="{{index < 5}}" -->
+      <view  class="list-item" wx:for="{{list[1]}}" wx:key="list" data-item="{{item}}" bindtap="playMusic">
         <image class='list-item-image-bg' src="{{item.song.album.picUrl}}"></image>
         <view class='list-content-head'>
           <image src="{{item.song.album.picUrl}}" mode='aspectFill'></image>
@@ -52,7 +53,7 @@
     </view>
 
     <!-- 推荐歌单  -->
-    <title name="推荐歌单"></title>
+    <title name="推荐歌单" right right-url="{{'songSheetList'}}"></title>
 
     <view class="list-content grid">
       <view class="list-item " wx:for="{{list[2]}}" wx:key="grid" data-id="{{item.id}}" bindtap='songFn'>
