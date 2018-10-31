@@ -16,7 +16,7 @@
       </view>
     </view>
     <view class='box-warp'>
-      <view wx:if="{{list.length > 0}}" wx:for="{{list}}" wx:key="{{*this}}" class='box-item' data-key="{{index}}" bindtap="play">
+      <view wx:if="{{list.length > 0}}" wx:for="{{list}}" wx:key="{{index}}" class='box-item' data-key="{{index}}" bindtap="play">
         <view class="box-item-content {{item.checked?'active':''}}">
           <view wx:if="{{item.checked?'active':''}}" class='nowing'>
             <text class='music icon-shengyin'></text>

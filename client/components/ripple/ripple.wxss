@@ -1,0 +1,17 @@
+.myi {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+  /* padding-left:10%; */
+  margin-top: 400rpx;
+  height: 100%;
+}
+ 
+.myi view {
+  transition: all 0.5s;
+  width: 2%;
+  height: 200rpx;
+  background-color: #aaa;
+}

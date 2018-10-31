@@ -100,21 +100,22 @@ class Play {
    * isOne 是否列表点击播放
    */
   _playAudio(innerAudioContext, url, isOne, self) {
-
+    let that = this
     // let self = this;
     // innerAudioContext.autoplay = off;
     // innerAudioContext.src = url;
     // 网易云api提供的第二种解决方案
     innerAudioContext.src = `http://music.163.com/song/media/outer/url?id=${url}.mp3`;
-
+    console.log(1111)
     //  判断是否播放，不用autoplay的原因是，如果由默认播放音乐，点击相同音乐不播放的问题
     if (isOne) {
       innerAudioContext.play();
     }
-
+    // innerAudioContext.autoplay = true
+    // 取消
+    innerAudioContext.offPlay()
     // 播放成功
     innerAudioContext.onPlay((res) => {
-
       self.setData({
         play: true
       })
@@ -123,12 +124,32 @@ class Play {
         data: true,
       })
     })
+    // // 停止播放
+    // innerAudioContext.onStop((res) => {})
+
+    // // 暂停播放
+    // innerAudioContext.onPause((res) => {})
+
+    // innerAudioContext.offTimeUpdate()
+    innerAudioContext.onTimeUpdate((res) => {
+      typeof (self.playTime) === 'function'&& self.playTime(true)
+    })
+    // 取消事件
+    innerAudioContext.offEnded()
     // 播放结束
     innerAudioContext.onEnded((res) => {
-      console.log(res)
-      self.setData({
-        play: false
-      })
+      // 停止播放 ，下次播放同一首歌曲从头开始
+      innerAudioContext.stop()
+
+      typeof(self.switchInit) === 'function' && self.switchInit('next', true)
+
+      // this.setPlaylist(this.randomPlay('next', true).song);
+      // this.getUrlAjax(innerAudioContext, {
+      //   id: that.getPlaylist().select.id
+      // }, true, self);
+      // self.setData({
+      //   list: this.randomPlay('next', true).song
+      // })
     })
     // 播放失败
     innerAudioContext.onError((res) => {
@@ -141,7 +162,7 @@ class Play {
   }
   /**
    * 播放模式切换 ,返回下一首播放曲目
-   * types: true ||false 歌曲切换
+   * types: 'next' ||'pre' 歌曲切换 下一曲
    * auto ：true || false 是否自动播放，如果为true 是单曲循环 否则列表循环
    * del 删除歌曲
    */
@@ -201,7 +222,7 @@ class Play {
         break
     }
 
-    console.log(index)
+    console.log('播放索引：',index)
     // 重新设置播放列表
     this.setPlaylist(songs[index])
 

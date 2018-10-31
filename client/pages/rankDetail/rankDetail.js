@@ -36,12 +36,16 @@ Page({
    */
   playMusic(event) {
     let item = event.currentTarget.dataset.item;
+    console.log(item)
     let obj = {
       id: item.id,
       name: item.name,
       song: {
         artists: item.ar,
-        album: item.al
+        album: item.al,
+        mMusic: {
+          playTime: item.dt
+        }
       }
     }
     this.setData({

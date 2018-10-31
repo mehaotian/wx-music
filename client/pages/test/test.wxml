@@ -1,0 +1,5 @@
+<view class='wrap'>
+  <ripple off="{{off}}" />
+
+</view>
+<button bindtap='switch'>开关</button>

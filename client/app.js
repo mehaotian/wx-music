@@ -2,7 +2,7 @@
 import interfaces from './utils/http/interface.js'
 import util from './utils/util'
 import Play from './utils/playUtil.js'
-
+const innerAudioContext = wx.createInnerAudioContext()
 App({
   onLaunch: function() {
     // console.log(interfaces.query)
@@ -17,10 +17,9 @@ App({
     } else {
       wx.setStorageSync('random:play', 0)
     }
-
   },
-  innerAudioContext: wx.createInnerAudioContext(), // 播放器实例，全局都要用这一个播放器
+  innerAudioContext, // 播放器实例，全局都要用这一个播放器
   $api: interfaces, // 将https 注册到 app中
   util, // 注册工具方法
-  Play // 注册工具方法
+  Play // 注册音乐工具方法
 })

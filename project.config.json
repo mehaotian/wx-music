@@ -1,8 +1,8 @@
 {
-	"client": "./client",
-	"svr": "./server",
-	"miniprogramRoot": "./client",
-	"qcloudRoot": "./server",
+	"client": "client/",
+	"svr": "server/",
+	"miniprogramRoot": "client/",
+	"qcloudRoot": "server/",
 	"setting": {
 		"urlCheck": false,
 		"es6": true,
@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 8,
+			"current": 9,
 			"list": [
 				{
 					"id": -1,
@@ -85,6 +85,11 @@
 					"name": "歌单列表",
 					"pathName": "pages/rankDetail/rankDetail",
 					"query": "idx=828069872&types=song"
+				},
+				{
+					"id": -1,
+					"name": "测试页面",
+					"pathName": "pages/test/test"
 				}
 			]
 		}

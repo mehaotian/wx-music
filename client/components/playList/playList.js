@@ -8,7 +8,7 @@ Component({
     show: {
       type: Boolean,
       value: false,
-      observer: function(newVal, oldVal, changedPath) {
+      observer(newVal, oldVal, changedPath) {
         // 新值为true ，表示打开播放列表，这个时候初始化列表数据 
         if (newVal) {
           this._listInit()

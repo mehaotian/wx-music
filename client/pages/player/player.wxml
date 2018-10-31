@@ -29,11 +29,11 @@
     </view>
     <view class='progress'>
       <view class="progress-box">
-        <progress percent="80" activeColor="#ff5a5f" />
+        <progress percent="{{nowTime.time / (list.time.time / 100)}}" activeColor="#ff5a5f" />
       </view>
       <view class='progress-time'>
-        <text class=''>02:00</text>
-        <text class=''>04:32</text>
+        <text class=''>{{nowTime.m < 10 ?"0":''}}{{nowTime.m}}:{{nowTime.s < 10 ?"0":''}}{{nowTime.s}}</text>
+        <text class=''>{{list.time.m}}:{{list.time.s}}</text>
       </view>
 
     </view>

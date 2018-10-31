@@ -1,0 +1,3 @@
+<view class='myi'>
+  <view wx:for="{{musList}}" wx:key="index" style='height:{{item}}%;margin-top:-{{item/2}}rpx'></view>
+</view>

@@ -8,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    play: false,
+    play: false, // 播放设置
     list: {},
     isPlayListShow: false,
     random: [{
@@ -24,7 +24,15 @@ Page({
         text: '单曲循环'
       },
     ],
-    randomIndex: 0
+    randomIndex: 0,
+    nowTime: {
+      h: 0,
+      m: 0,
+      s: 0,
+      time: 0,
+
+    }, // 当前播放时间
+    timer: null
   },
 
   /**
@@ -32,17 +40,34 @@ Page({
    */
   onLoad: function(options) {
     // 获取当前播放状态
-    let playType = wx.getStorageSync('isplay');
     let random = wx.getStorageSync('random:play')
-
+    let playType = wx.getStorageSync('isplay');
     this.setData({
       play: playType,
       randomIndex: random
     })
 
-    this._playInit(app.Play.getPlaylist().select, playType)
-    console.log(innerAudioContext.duration)
+    /**
+     * 播放进度更新
+     */
+    // setTimeout(()=>{
 
+    // },2000)
+    // innerAudioContext.pause()
+
+
+    // console.log(innerAudioContext.duration)
+    // innerAudioContext.onTimeUpdate((res) => {
+    //   this.playTime(true)
+    // })
+  },
+  onShow() {
+    let playType = wx.getStorageSync('isplay');
+    setTimeout(()=>{
+      this.playTime(true)
+      this._playInit(app.Play.getPlaylist().select, playType)
+    },50)
+    
 
   },
   /**
@@ -50,7 +75,6 @@ Page({
    */
   playMusic() {
     let play = !this.data.play;
-
     this.setData({
       play: play
     })
@@ -58,12 +82,14 @@ Page({
       key: 'isplay',
       data: play,
     })
+
     if (play) {
       innerAudioContext.play();
+      // innerAudioContext.seek(170)
+
     } else {
       innerAudioContext.pause();
     }
-
   },
   /**
    * 播放顺序
@@ -91,12 +117,18 @@ Page({
   switchSong(e) {
     // 获取点击状态
     let types = e.currentTarget.dataset.type
+    this.switchInit(types, false)
+
+  },
+  switchInit(types, auto) {
     // 获取切换列表
-    let item = app.Play.randomPlay(types, false)
+    let item = app.Play.randomPlay(types, auto)
     // TODO 因为本页面有大图片，所以刷新会比较慢，之后会考虑列表缓存的方式
+    clearTimeout(this.data.timer)
     this.setData({
       list: item.song
     })
+
     // 初始化播放音乐
     this._playInit(item.song, true)
   },
@@ -115,11 +147,21 @@ Page({
    */
   _playInit(item, isOne = false) {
     let self = this;
+    item.time = app.util.getTime(item.song.mMusic.playTime)
     // 添加到播放列表
     app.Play.setPlaylist(item);
+
+    clearTimeout(this.data.timer)
+    // innerAudioContext.stop();
     // 数据渲染
     this.setData({
-      list: item
+      list: item,
+      nowTime: {
+        h: 0,
+        m: 0,
+        s: 0,
+        time: 0
+      }
     }, () => {
       // 请求播放数据
       // 如果在setData回到中请求接口，避免数据渲染之后，歌曲不播放的问题
@@ -134,6 +176,22 @@ Page({
    */
   updateSong() {
     this._playInit(app.Play.getPlaylist().select, true)
+  },
+  /**
+   * 更新进度条
+   */
+  playTime(types) {
+    if (!types) {
+      return
+    }
+    let s = app.util.getTime(innerAudioContext.currentTime * 1000)
+    console.log(s)
+    if (!s.h) s.h = 0;
+    if (!s.m) s.m = 0;
+    if (!s.s) s.s = 0;
+    this.setData({
+      nowTime: s
+    })
   }
 
 })
