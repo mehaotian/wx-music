@@ -100,23 +100,35 @@ class Play {
    * isOne 是否列表点击播放
    */
   _playAudio(innerAudioContext, url, isOne, self) {
-    let that = this
+    let that = this;
+    let playlist = this.getPlaylist().select
     // let self = this;
     // innerAudioContext.autoplay = off;
     // innerAudioContext.src = url;
     // 网易云api提供的第二种解决方案
     innerAudioContext.src = `http://music.163.com/song/media/outer/url?id=${url}.mp3`;
-    console.log(1111)
-    //  判断是否播放，不用autoplay的原因是，如果由默认播放音乐，点击相同音乐不播放的问题
-    if (isOne) {
-      innerAudioContext.play();
-    }
-    // innerAudioContext.autoplay = true
-    // 取消
-    innerAudioContext.offPlay()
+
+    console.log(playlist)
+    innerAudioContext.title = playlist.name // 歌曲名称
+    innerAudioContext.epname = playlist.song.album.name // 专辑名称
+    // 歌手名称
+    let songname = ''
+    playlist.song.artists.map((item, index) => {
+      if (index !== 0) {
+        songname += '/'
+      }
+      songname += item.name
+    })
+    console.log(songname)
+    innerAudioContext.singer = songname // 歌手名称
+    innerAudioContext.coverImgUrl = playlist.song.album.picUrl // 歌手名称
     // 播放成功
     innerAudioContext.onPlay((res) => {
+
       self.setData({
+        play: true
+      })
+      self.triggerEvent('play', {
         play: true
       })
       wx.setStorage({
@@ -128,14 +140,27 @@ class Play {
     // innerAudioContext.onStop((res) => {})
 
     // // 暂停播放
-    // innerAudioContext.onPause((res) => {})
-
-    // innerAudioContext.offTimeUpdate()
-    innerAudioContext.onTimeUpdate((res) => {
-      typeof (self.playTime) === 'function'&& self.playTime(true)
+    innerAudioContext.onPause((res) => {
+      self.setData({
+        play: false
+      })
+      self.triggerEvent('play', {
+        play: false
+      })
+      wx.setStorage({
+        key: 'isplay',
+        data: false,
+      })
     })
-    // 取消事件
-    innerAudioContext.offEnded()
+
+    innerAudioContext.onTimeUpdate((res) => {
+
+      // if (!self.stopPlay) {
+      typeof(self.playTime) === 'function' && self.playTime(true)
+      // }
+    })
+
+    
     // 播放结束
     innerAudioContext.onEnded((res) => {
       // 停止播放 ，下次播放同一首歌曲从头开始
@@ -143,19 +168,16 @@ class Play {
 
       typeof(self.switchInit) === 'function' && self.switchInit('next', true)
 
-      // this.setPlaylist(this.randomPlay('next', true).song);
-      // this.getUrlAjax(innerAudioContext, {
-      //   id: that.getPlaylist().select.id
-      // }, true, self);
-      // self.setData({
-      //   list: this.randomPlay('next', true).song
-      // })
+
     })
     // 播放失败
     innerAudioContext.onError((res) => {
       console.log(res.errMsg)
       console.log(res.errCode)
       self.setData({
+        play: false
+      })
+      self.triggerEvent('play', {
         play: false
       })
     })
@@ -222,7 +244,7 @@ class Play {
         break
     }
 
-    console.log('播放索引：',index)
+    console.log('播放索引：', index)
     // 重新设置播放列表
     this.setPlaylist(songs[index])
 

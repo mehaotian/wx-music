@@ -49,14 +49,17 @@
         - {{item.al.name }}
 
       </view>
- 
+
     </view>
     <view class="play-icon">
       <text class="music {{currentId === item.id?'icon-zanting':'icon-play'}}"></text>
+    </view>
+    <view class='ripple'>
+      <ripple off="{{currentId === item.id && play}}" />
     </view>
   </view>
 
 </view>
 
 <!-- 底部播放器 -->
-<player itemData="{{itemData}}" bindisroll="isroll"></player>
+<player itemData="{{itemData}}" bindisroll="isroll" bindplay="play"></player>

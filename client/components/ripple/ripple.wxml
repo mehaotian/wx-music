@@ -1,3 +1,11 @@
+
+<!-- 
+ author：meHaoTian
+
+ github : https://github.com/mehaotian
+ 
+ describe : 音乐波纹组件
+ -->
 <view class='myi'>
   <view wx:for="{{musList}}" wx:key="index" style='height:{{item}}%;margin-top:-{{item/2}}rpx'></view>
 </view>

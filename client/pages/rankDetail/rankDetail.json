@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "player": "/components/player/player"
+    "player": "/components/player/player",
+    "ripple": "/components/ripple/ripple"
   }
 }

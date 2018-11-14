@@ -29,7 +29,7 @@
     </view>
     <view class='progress'>
       <view class="progress-box">
-        <progress percent="{{nowTime.time / (list.time.time / 100)}}" activeColor="#ff5a5f" />
+        <m-progress percent="{{nowTime.time / (list.time.time / 100)}}" bindprogressMove="progressMove" />
       </view>
       <view class='progress-time'>
         <text class=''>{{nowTime.m < 10 ?"0":''}}{{nowTime.m}}:{{nowTime.s < 10 ?"0":''}}{{nowTime.s}}</text>

@@ -4,7 +4,7 @@
 	"miniprogramRoot": "client/",
 	"qcloudRoot": "server/",
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 9,
+			"current": 8,
 			"list": [
 				{
 					"id": -1,
@@ -81,15 +81,16 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 8,
 					"name": "歌单列表",
 					"pathName": "pages/rankDetail/rankDetail",
-					"query": "idx=828069872&types=song"
+					"query": "idx=2144082923&types=song"
 				},
 				{
 					"id": -1,
 					"name": "测试页面",
-					"pathName": "pages/test/test"
+					"pathName": "pages/test/test",
+					"query": ""
 				}
 			]
 		}

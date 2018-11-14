@@ -1,5 +1,10 @@
-<!--播放列表组件-->
+<!-- 
+ author：meHaoTian
 
+ github : https://github.com/mehaotian
+ 
+ describe : 播放列表组件
+ -->
 <view wx:if="{{show}}" class="warp mask {{isPageMove?'move':''}}">
   <view class='cover-box-bg'></view>
 </view>

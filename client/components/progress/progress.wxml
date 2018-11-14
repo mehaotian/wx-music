@@ -1,0 +1,21 @@
+<!-- 
+ author：meHaoTian
+
+ github : https://github.com/mehaotian
+ 
+ describe : 播放器进度条控制组件
+ -->
+
+<view class='wrap' style="height:{{height}}px;" bindtap="jump">
+  <movable-area id="selQuery" class="movable"  touchend="end">
+    <movable-view class='movable-view' style='width:0px;height:{{height}}px' animation="{{false}}" direction="horizontal" x="{{x}}" bindchange="change" catchtap='catchtap'>
+      <view class='sub' style='width:{{btnH}}px;height:{{btnH}}px'
+        bindtouchstart='start'
+        bindtouchend='end'
+      ></view>
+    </movable-view>
+  </movable-area>
+  <view class='mask-bottom' style="height:{{height}}px;">
+    <view class='mask-active' style='width:{{active}}px'></view>
+  </view>
+</view>

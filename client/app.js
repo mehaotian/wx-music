@@ -2,7 +2,8 @@
 import interfaces from './utils/http/interface.js'
 import util from './utils/util'
 import Play from './utils/playUtil.js'
-const innerAudioContext = wx.createInnerAudioContext()
+// const innerAudioContext = wx.createInnerAudioContext()
+const innerAudioContext = wx.getBackgroundAudioManager()
 App({
   onLaunch: function() {
     // console.log(interfaces.query)

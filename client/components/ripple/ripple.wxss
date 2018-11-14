@@ -5,7 +5,7 @@
   width: 100%;
   box-sizing: border-box;
   /* padding-left:10%; */
-  margin-top: 400rpx;
+  /* margin-top: 400rpx; */
   height: 100%;
 }
  
@@ -13,5 +13,5 @@
   transition: all 0.5s;
   width: 2%;
   height: 200rpx;
-  background-color: #aaa;
+  background-color:rgba(255, 255, 255, 0.2);
 }

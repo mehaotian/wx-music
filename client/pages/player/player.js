@@ -32,7 +32,8 @@ Page({
       time: 0,
 
     }, // 当前播放时间
-    timer: null
+    timer: null,
+    stopPlay: false
   },
 
   /**
@@ -50,26 +51,11 @@ Page({
     /**
      * 播放进度更新
      */
-    // setTimeout(()=>{
-
-    // },2000)
-    // innerAudioContext.pause()
-
-
-    // console.log(innerAudioContext.duration)
-    // innerAudioContext.onTimeUpdate((res) => {
-    //   this.playTime(true)
-    // })
-  },
-  onShow() {
-    let playType = wx.getStorageSync('isplay');
-    setTimeout(()=>{
-      this.playTime(true)
-      this._playInit(app.Play.getPlaylist().select, playType)
-    },50)
+    this.playTime(true)
+    this._playInit(app.Play.getPlaylist().select, playType)
     
-
   },
+  onShow() {},
   /**
    * 播放音乐
    */
@@ -84,9 +70,13 @@ Page({
     })
 
     if (play) {
-      innerAudioContext.play();
-      // innerAudioContext.seek(170)
-
+      if (!innerAudioContext.paused) {
+        app.Play.getUrlAjax(innerAudioContext, {
+          id: app.Play.getPlaylist().select.id
+        }, false, this);
+      } else {
+        innerAudioContext.play();
+      }
     } else {
       innerAudioContext.pause();
     }
@@ -165,16 +155,34 @@ Page({
     }, () => {
       // 请求播放数据
       // 如果在setData回到中请求接口，避免数据渲染之后，歌曲不播放的问题
-      app.Play.getUrlAjax(innerAudioContext, {
-        id: app.Play.getPlaylist().select.id
-      }, isOne, self);
+      if (isOne) {
+        app.Play.getUrlAjax(innerAudioContext, {
+          id: app.Play.getPlaylist().select.id
+        }, isOne, self);
+      }
     })
 
   },
   /**
    * 删除歌曲之后，更新当前数据
    */
-  updateSong() {
+  updateSong(e) {
+    console.log(e.detail.show)
+    // 播放列表空
+    if (e.detail.show) {
+      this.setData({
+        isPlayListShow: false,
+        play: false
+
+      })
+      // 向父组件发送是否滚动页面事件
+      this.triggerEvent('isroll', {
+        show: true
+      })
+      innerAudioContext.stop();
+      wx.navigateBack()
+      return
+    }
     this._playInit(app.Play.getPlaylist().select, true)
   },
   /**
@@ -185,13 +193,24 @@ Page({
       return
     }
     let s = app.util.getTime(innerAudioContext.currentTime * 1000)
-    console.log(s)
     if (!s.h) s.h = 0;
     if (!s.m) s.m = 0;
     if (!s.s) s.s = 0;
     this.setData({
       nowTime: s
     })
+  },
+  progressMove(res) {
+    let time = res.detail.value * (this.data.list.time.time / 100)
+    // nowTime.time / (list.time.time / 100)
+    let s = app.util.getTime(time)
+    if (!s.h) s.h = 0;
+    if (!s.m) s.m = 0;
+    if (!s.s) s.s = 0;
+    this.setData({
+      nowTime: s,
+    })
+      innerAudioContext.seek(time / 1000)
   }
 
 })

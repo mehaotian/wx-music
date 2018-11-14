@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    paly: false,
     list: [],
     pageShow: false,
     types: true,
@@ -25,11 +26,18 @@ Page({
     let types = options.types;
     let idx = options.idx;
     this.setData({
-      types: types === 'rank' ? true : false
+      types: types === 'rank' ? true : false,
+      currentId: app.Play.getPlaylist().select.id
     })
     this.getTopListAjax(idx, types)
     // this.getTopListAjax(idx, types)
 
+  },
+  onShow() {
+    this.setData({
+      itemData: {},
+      currentId: app.Play.getPlaylist().select.id
+    })
   },
   /**
    * 播放音乐
@@ -50,7 +58,8 @@ Page({
     }
     this.setData({
       itemData: obj,
-      currentId: obj.id
+      currentId: obj.id,
+      paly: true
     })
   },
   /**
@@ -89,6 +98,11 @@ Page({
     console.log(e.detail.show)
     this.setData({
       isroll: e.detail.show
+    })
+  },
+  play(e) {
+    this.setData({
+      play: e.detail.play
     })
   }
 })

@@ -16,9 +16,13 @@ Component({
         // 判断是否第一次进入
         if (JSON.stringify(newVal) === '{}') {
           let playlist = app.Play.getPlaylist().playlist;
+          let playType = wx.getStorageSync('isplay');
+
+          this.triggerEvent('play', {
+            play: playType
+          })
           // 如果播放列表有数据，那么显示上次播放的歌曲，并暂停
           if (playlist.length > 0) {
-            let playType = wx.getStorageSync('isplay');
             console.log(playType)
             // if (!playType) {
             //     playType = false
@@ -27,7 +31,6 @@ Component({
               play: playType,
 
             })
-
             this._playInit(app.Play.getPlaylist().select, playType)
             // 显示播放器
             console.log(playlist.length)
@@ -37,6 +40,11 @@ Component({
           }
           return;
         }
+
+        this.triggerEvent('play', {
+          play: true
+        })
+
         // 单曲点击进入执行的方法
         this._playInit(newVal, true, true);
       }
@@ -67,17 +75,28 @@ Component({
       this.setData({
         play: play
       })
-      wx.setStorage({
-        key: 'isplay',
-        data: play,
-      })
+      wx.setStorageSync('isplay', play)
 
+      console.log(play)
       // 根据播放状态来判断当前是播放还是暂停
       if (play) {
-        innerAudioContext.play();
+        // innerAudioContext.onCanPlay((res)=>{
+        //   console.log(res)
+        // })
+        if (!innerAudioContext.paused) {
+          app.Play.getUrlAjax(innerAudioContext, {
+            id: app.Play.getPlaylist().select.id
+          }, false, this);
+        } else {
+          innerAudioContext.play();
+
+        }
       } else {
         innerAudioContext.pause();
       }
+      this.triggerEvent('play', {
+        play
+      })
 
     },
     /**
@@ -126,9 +145,11 @@ Component({
       }, () => {
         // 请求播放数据
         // 如果在setData回到中请求接口，避免数据渲染之后，歌曲不播放的问题
-        app.Play.getUrlAjax(innerAudioContext, {
-          id: app.Play.getPlaylist().select.id
-        }, isOne, self);
+        if (off) {
+          app.Play.getUrlAjax(innerAudioContext, {
+            id: app.Play.getPlaylist().select.id
+          }, isOne, self);
+        }
 
       })
 
@@ -194,7 +215,7 @@ Component({
         innerAudioContext.pause();
         return
       }
-      this._playInit(app.Play.getPlaylist().select, false, true)
+      this._playInit(app.Play.getPlaylist().select, true, true)
     }
   }
 })

@@ -1,6 +1,7 @@
 {
-    "usingComponents": {
-        "player": "/components/player/player",
-        "title": "/components/title/title"
-    }
+  "usingComponents": {
+    "player": "/components/player/player",
+    "title": "/components/title/title",
+    "ripple": "/components/ripple/ripple"
+  }
 }

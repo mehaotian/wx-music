@@ -162,6 +162,7 @@ Component({
       playlist[index].checked = false
       // 当前选中的歌曲
       playlist[key].checked = true
+      wx.setStorageSync('isplay', true)
       this._playMusicInit(playlist)
 
     },

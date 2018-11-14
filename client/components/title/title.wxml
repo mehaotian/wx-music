@@ -1,9 +1,9 @@
 <!-- 
-author：meHaoTian
+ author：meHaoTian
 
  github : https://github.com/mehaotian
  
- describe : 标题栏
+ describe : 标题栏组件
  -->
 <view class="list-box-title">
   <text>{{name}}</text>

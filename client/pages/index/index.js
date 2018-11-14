@@ -4,17 +4,23 @@ let app = getApp();
 let self;
 Page({
   data: {
+    play: false,
     isroll: true, // 页面滚动开关
     itemData: {},
-    list: {} // 首页数据
+    list: {}, // 首页数据
+    currentId: '-1' // 当前播放音乐
   },
   onLoad() {
     self = this; // 将this 绑定于全局
+    this.setData({
+      currentId: app.Play.getPlaylist().select.id
+    })
     this.init(); // 初始化获取首页数据
   },
   onShow() {
     this.setData({
-      itemData: {}
+      itemData: {},
+      currentId: app.Play.getPlaylist().select.id
     })
   },
 
@@ -55,8 +61,12 @@ Page({
     let item = event.currentTarget.dataset.item;
     console.log(item)
     this.setData({
-      itemData: item
+      itemData: item,
+      currentId: item.id,
+      // paly: true
     })
+    wx.setStorageSync('isplay', true);
+
     console.log("开始播放音乐");
   },
   // 初始化数据获取
@@ -148,6 +158,12 @@ Page({
     console.log(e.detail.show)
     this.setData({
       isroll: e.detail.show
+    })
+  },
+  play(e) {
+    console.log(e.detail)
+    this.setData({
+      play: e.detail.play
     })
   }
 

@@ -29,8 +29,8 @@
     <title name="个性化推荐"></title>
     <!-- 推荐内容，是一个竖列表 -->
     <view class="list-content">
-    <!-- wx:if="{{index < 5}}" -->
-      <view  class="list-item" wx:for="{{list[1]}}" wx:key="list" data-item="{{item}}" bindtap="playMusic">
+      <!-- wx:if="{{index < 5}}" -->
+      <view class="list-item" wx:for="{{list[1]}}" wx:key="list" data-item="{{item}}" bindtap="playMusic">
         <image class='list-item-image-bg' src="{{item.song.album.picUrl}}"></image>
         <view class='list-content-head'>
           <image src="{{item.song.album.picUrl}}" mode='aspectFill'></image>
@@ -47,7 +47,10 @@
           </view>
         </view>
         <view class='list-content-play'>
-          <text class='music icon-play font-32'></text>
+          <text class="music {{currentId === item.id?'icon-zanting':'icon-play'}} font-32"></text>
+        </view>
+        <view class='ripple'>
+          <ripple off="{{currentId === item.id && play}}" />
         </view>
       </view>
     </view>
@@ -103,4 +106,4 @@
 </view>
 
 <!-- 底部播放器 -->
-<player itemData="{{itemData}}" bindisroll="isroll"></player>
+<player itemData="{{itemData}}" bindisroll="isroll" bindplay="play"></player>
