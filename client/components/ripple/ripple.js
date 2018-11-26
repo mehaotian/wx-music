@@ -36,9 +36,9 @@ Component({
     //我的随机数
     myradom(musList, newVal) {
       const that = this
-      var _musList = musList
+      let _musList = musList
       // console.log(newVal)
-      for (var i = 0; i < _musList.length; i++) {
+      for (let i = 0; i < _musList.length; i++) {
         //+1是为了避免为0
         if (newVal) {
           _musList[i] = (100 * Math.random().toFixed(2))

@@ -118,7 +118,7 @@ Component({
     delSong(e) {
       let self = this
       let key = e.currentTarget.dataset.key
-      // 获取当前绑定的list数据，切勿调用 本地储存里的数据  app.Play.getPlaylist()
+      // 获取当前绑定的list数据，切勿调用本地储存里的数据  app.Play.getPlaylist()
       let playlist = this.data.list
       let song = {}
       if (playlist[key].checked) {
