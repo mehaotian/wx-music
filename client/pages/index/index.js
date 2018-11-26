@@ -13,14 +13,14 @@ Page({
   onLoad() {
     self = this; // 将this 绑定于全局
     this.setData({
-      currentId: app.Play.getPlaylist().select.id
+      currentId: app.Play.getPlaylist().select.id || ''
     })
     this.init(); // 初始化获取首页数据
   },
   onShow() {
     this.setData({
       itemData: {},
-      currentId: app.Play.getPlaylist().select.id
+      currentId: app.Play.getPlaylist().select.id || ''
     })
   },
 
